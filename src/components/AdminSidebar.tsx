@@ -80,7 +80,7 @@ export default function AdminSidebar() {
                 <SidebarItem icon={FileText} label="Quản lý tin tức" href="/content/news" active={pathname.includes('/news')} indent />
                 <SidebarItem icon={MessageSquare} label="Comment" href="#" indent />
                 <SidebarItem icon={Layers} label="Quản lý danh mục" href="/content/categories" active={pathname.includes('/categories')} indent />
-                <SidebarItem icon={LayoutTemplate} label="Quản lý cơ quan" href="#" indent />
+                <SidebarItem icon={LayoutTemplate} label="Quản lý cơ quan" href="/content/organizations" active={pathname.includes('/organizations')} indent />
                 <SidebarItem icon={Hash} label="Quản lý Tags" href="#" indent />
               </SidebarGroup>
               <SidebarGroup label="Văn bản góp ý dự thảo" icon={Folder} />
