@@ -295,9 +295,62 @@ export default function GenericCollectionDetailPage() {
           );
       }
 
-      // Textarea / HTML
-      if (f.interface === 'input-multiline' || f.type === 'text' || f.interface === 'input-rich-text-html') {
+      // Textarea (ph\u1ea3i \u0111\u1eb7t SAU rich-text check)
+      if (f.interface === 'input-multiline' || (f.type === 'text' && f.interface !== 'input-rich-text-html')) {
           return <div className="w-full border border-gray-200 rounded-lg p-4 bg-gray-50 text-gray-800 text-[13.5px] min-h-[100px] cursor-default whitespace-pre-wrap">{val}</div>;
+      }
+
+      // WYSIWYG Rich Text HTML (readonly view) \u2014 ph\u1ea3i ki\u1ec3m tra TR\u01af\u1edcC textarea
+      if (f.interface === 'input-rich-text-html') {
+          return (
+            <div className="w-full border border-gray-200 rounded-lg overflow-hidden bg-white opacity-90">
+              {/* Toolbar Row 1 (disabled) */}
+              <div className="flex items-center flex-wrap gap-0.5 px-2 py-1.5 border-b border-gray-100 bg-[#f8fafc] pointer-events-none opacity-60">
+                <span className="wysiwyg-btn"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" /></svg></span>
+                <span className="wysiwyg-btn"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 10H11a8 8 0 00-8 8v2M21 10l-6 6m6-6l-6-6" /></svg></span>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                <span className="wysiwyg-btn font-bold">B</span>
+                <span className="wysiwyg-btn italic">I</span>
+                <span className="wysiwyg-btn underline">U</span>
+                <span className="wysiwyg-btn line-through">S</span>
+                <span className="wysiwyg-btn text-[11px]">X₂</span>
+                <span className="wysiwyg-btn text-[11px]">X²</span>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                <span className="wysiwyg-btn px-2 text-[11px] min-w-[70px] flex items-center gap-1">Inter,system... <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg></span>
+                <span className="wysiwyg-btn px-2 text-[11px] min-w-[40px] flex items-center gap-1">15px <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg></span>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                {['H1','H2','H3','H4','H5','H6'].map(h => (
+                  <span key={h} className="wysiwyg-btn text-[11px] font-bold px-1.5">{h}</span>
+                ))}
+              </div>
+              {/* Toolbar Row 2 (disabled) */}
+              <div className="flex items-center flex-wrap gap-0.5 px-2 py-1.5 border-b border-gray-100 bg-[#f8fafc] pointer-events-none opacity-60">
+                <span className="wysiwyg-btn text-[10px] font-mono">Pre</span>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                {[0,1,2,3].map(i => (
+                  <span key={i} className="wysiwyg-btn">
+                    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={i===0?"M4 6h16M4 12h8M4 18h12":i===1?"M4 6h16M8 12h8M6 18h12":i===2?"M4 6h16M10 12h10M8 18h12":"M4 6h16M4 12h16M4 18h16"} /></svg>
+                  </span>
+                ))}
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                <span className="wysiwyg-btn text-[11px] font-bold italic">Ix</span>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                <span className="wysiwyg-btn text-[13px]">””</span>
+                <span className="wysiwyg-btn font-mono text-[11px]">{'{}'}</span>
+                <span className="wysiwyg-btn"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg></span>
+              </div>
+              {/* Toolbar Row 3 (disabled) */}
+              <div className="flex items-center flex-wrap gap-0.5 px-2 py-1.5 border-b border-gray-100 bg-[#f8fafc] pointer-events-none opacity-60">
+                <span className="wysiwyg-btn"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" strokeWidth={2}/><circle cx="8.5" cy="8.5" r="1.5" strokeWidth={2}/><polyline points="21 15 16 10 5 21" strokeWidth={2}/></svg></span>
+                <span className="wysiwyg-btn"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><polygon points="23 7 16 12 23 17 23 7" strokeWidth={2}/><rect x="1" y="5" width="15" height="14" rx="2" ry="2" strokeWidth={2}/></svg></span>
+                <span className="wysiwyg-btn text-[11px] font-medium">View invisible elements</span>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                <span className="wysiwyg-btn font-mono text-[11px]">&lt;&gt;</span>
+              </div>
+              {/* Content area */}
+              <div className="min-h-[160px] p-4 text-[14px] text-gray-800 leading-relaxed bg-white cursor-default" dangerouslySetInnerHTML={{ __html: val || '<p class="text-gray-400">Không có nội dung</p>' }} />
+            </div>
+          );
       }
 
       // Relation (M2O / M2M)

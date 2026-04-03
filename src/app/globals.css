@@ -14,3 +14,14 @@
     text-wrap: balance;
   }
 }
+
+@layer components {
+  .wysiwyg-btn {
+    @apply inline-flex items-center justify-center min-w-[26px] h-[26px] px-1.5 rounded text-[13px] text-gray-600 hover:bg-gray-200 hover:text-gray-900 transition-colors cursor-pointer select-none;
+  }
+  [contenteditable]:empty:before {
+    content: attr(data-placeholder);
+    @apply text-gray-400 pointer-events-none;
+  }
+}
+

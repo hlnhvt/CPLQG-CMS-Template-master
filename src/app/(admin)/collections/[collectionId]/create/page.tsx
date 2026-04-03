@@ -400,14 +400,103 @@ export default function GenericCollectionCreatePage() {
           );
       }
 
-      // Textarea / HTML / RichText
-      if (f.interface === 'input-multiline' || f.type === 'text' || f.interface === 'input-rich-text-html') {
+      // WYSIWYG Rich Text HTML — phải kiểm tra TRƯỜC textarea vì field có thể có type='text'
+      if (f.interface === 'input-rich-text-html') {
           return (
-              <textarea rows={f.interface === 'input-rich-text-html' ? 10 : 4} disabled={isReadonly} className="w-full border border-gray-200 rounded-lg p-4 bg-white outline-none focus:border-[#5340FF] focus:ring-1 focus:ring-[#5340FF] transition-all resize-y text-[13.5px] text-gray-800 disabled:bg-gray-50 disabled:text-gray-500" placeholder={`Nhập nội dung...`}></textarea>
+            <div className="w-full border border-gray-200 rounded-lg overflow-hidden bg-white focus-within:border-[#5340FF] focus-within:ring-1 focus-within:ring-[#5340FF] transition-all">
+              {/* Toolbar Row 1: History + Inline formatting + Font + Headings */}
+              <div className="flex items-center flex-wrap gap-0.5 px-2 py-1.5 border-b border-gray-100 bg-[#f8fafc]">
+                {/* Undo / Redo */}
+                <button type="button" className="wysiwyg-btn" title="Undo"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" /></svg></button>
+                <button type="button" className="wysiwyg-btn" title="Redo"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 10H11a8 8 0 00-8 8v2M21 10l-6 6m6-6l-6-6" /></svg></button>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                {/* Inline styles */}
+                <button type="button" className="wysiwyg-btn font-bold" title="Bold">B</button>
+                <button type="button" className="wysiwyg-btn italic" title="Italic">I</button>
+                <button type="button" className="wysiwyg-btn underline" title="Underline">U</button>
+                <button type="button" className="wysiwyg-btn line-through" title="Strikethrough">S</button>
+                <button type="button" className="wysiwyg-btn text-[11px]" title="Subscript">X₂</button>
+                <button type="button" className="wysiwyg-btn text-[11px]" title="Superscript">X²</button>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                {/* Font + Size */}
+                <button type="button" className="wysiwyg-btn px-2 text-[11px] min-w-[70px] flex items-center gap-1" title="Font family">Inter,system... <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg></button>
+                <button type="button" className="wysiwyg-btn px-2 text-[11px] min-w-[40px] flex items-center gap-1" title="Font size">15px <svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg></button>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                {/* Headings */}
+                {['H1','H2','H3','H4','H5','H6'].map(h => (
+                  <button key={h} type="button" className="wysiwyg-btn text-[11px] font-bold px-1.5" title={h}>{h}</button>
+                ))}
+              </div>
+              {/* Toolbar Row 2: Paragraph + Lists + Color + Edit */}
+              <div className="flex items-center flex-wrap gap-0.5 px-2 py-1.5 border-b border-gray-100 bg-[#f8fafc]">
+                <button type="button" className="wysiwyg-btn text-[10px] font-mono" title="Preformatted">Pre</button>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                {/* Alignment */}
+                {["justify-start","justify-center","justify-end","justify-between"].map((a, i) => (
+                  <button key={i} type="button" className="wysiwyg-btn" title={['Left','Center','Right','Justify'][i]}>
+                    <svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={i===0?"M4 6h16M4 12h8M4 18h12":i===1?"M4 6h16M8 12h8M6 18h12":i===2?"M4 6h16M10 12h10M8 18h12":"M4 6h16M4 12h16M4 18h16"} /></svg>
+                  </button>
+                ))}
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                {/* Indent / Outdent / Lists */}
+                <button type="button" className="wysiwyg-btn" title="Decrease indent"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 18l-6-6 6-6M15 6h6M15 12h6M15 18h6" /></svg></button>
+                <button type="button" className="wysiwyg-btn" title="Increase indent"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 18l6-6-6-6M3 6h6M3 12h6M3 18h6" /></svg></button>
+                <button type="button" className="wysiwyg-btn" title="Numbered list"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v6m0 4h2M7 7h10M7 12h10M7 17h10" /></svg></button>
+                <button type="button" className="wysiwyg-btn" title="Bullet list"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 10h16M4 14h16M4 18h16" /></svg></button>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                {/* Color / Highlight */}
+                <button type="button" className="wysiwyg-btn flex items-center gap-0.5" title="Text color"><span className="font-bold text-red-500 text-[13px]">A</span><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg></button>
+                <button type="button" className="wysiwyg-btn flex items-center gap-0.5" title="Highlight"><span className="text-yellow-500 text-[13px] font-bold">H</span><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg></button>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                {/* Edit ops */}
+                <button type="button" className="wysiwyg-btn text-[11px] font-bold italic" title="Clear format">Ix</button>
+                <button type="button" className="wysiwyg-btn" title="Cut"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 2v4m0 4a2 2 0 100 4 2 2 0 000-4zM18 2v4m0 4a2 2 0 100 4 2 2 0 000-4zM6 6L18 18M18 6L6 18" /></svg></button>
+                <button type="button" className="wysiwyg-btn" title="Copy"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg></button>
+                <button type="button" className="wysiwyg-btn" title="Paste"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" /></svg></button>
+                <button type="button" className="wysiwyg-btn" title="Delete"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg></button>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                {/* Quote / Code / Link */}
+                <button type="button" className="wysiwyg-btn text-[13px]" title="Blockquote">””</button>
+                <button type="button" className="wysiwyg-btn font-mono text-[11px]" title="Inline code">{'{}'}</button>
+                <button type="button" className="wysiwyg-btn" title="Link"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" /></svg></button>
+              </div>
+              {/* Toolbar Row 3: Media + View */}
+              <div className="flex items-center flex-wrap gap-0.5 px-2 py-1.5 border-b border-gray-100 bg-[#f8fafc]">
+                <button type="button" className="wysiwyg-btn" title="Special chars">&amp;</button>
+                <button type="button" className="wysiwyg-btn" title="Image"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" strokeWidth={2}/><circle cx="8.5" cy="8.5" r="1.5" strokeWidth={2}/><polyline points="21 15 16 10 5 21" strokeWidth={2}/></svg></button>
+                <button type="button" className="wysiwyg-btn" title="Video"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><polygon points="23 7 16 12 23 17 23 7" strokeWidth={2}/><rect x="1" y="5" width="15" height="14" rx="2" ry="2" strokeWidth={2}/></svg></button>
+                <div className="relative">
+                  <button type="button" className="wysiwyg-btn flex items-center gap-0.5" title="Table"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><rect x="3" y="3" width="18" height="18" rx="2" strokeWidth={2}/><path strokeWidth={2} d="M3 9h18M9 3v18"/></svg><svg width="10" height="10" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg></button>
+                </div>
+                <button type="button" className="wysiwyg-btn" title="Horizontal rule">&#8212;</button>
+                <button type="button" className="wysiwyg-btn" title="Fullscreen"><svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" /></svg></button>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                <button type="button" className="wysiwyg-btn text-[11px] font-medium">View invisible elements</button>
+                <div className="w-px h-4 bg-gray-200 mx-1" />
+                <button type="button" className="wysiwyg-btn" title="Text direction LTR">↵</button>
+                <button type="button" className="wysiwyg-btn" title="Text direction RTL">↲</button>
+                <button type="button" className="wysiwyg-btn font-mono text-[11px]" title="Source code">&lt;&gt;</button>
+              </div>
+              {/* Content Area */}
+              <div
+                contentEditable
+                suppressContentEditableWarning
+                className="min-h-[200px] p-4 outline-none text-[14px] text-gray-800 leading-relaxed"
+                data-placeholder="Nhập nội dung..."
+              />
+            </div>
+          );
+      }
+
+      // Textarea (ph\u1ea3i \u0111\u1eb7t SAU rich-text check)
+      if (f.interface === 'input-multiline' || (f.type === 'text' && f.interface !== 'input-rich-text-html')) {
+          return (
+              <textarea rows={4} disabled={isReadonly} className="w-full border border-gray-200 rounded-lg p-4 bg-white outline-none focus:border-[#5340FF] focus:ring-1 focus:ring-[#5340FF] transition-all resize-y text-[13.5px] text-gray-800 disabled:bg-gray-50 disabled:text-gray-500" placeholder={`Nh\u1eadp n\u1ed9i dung...`}></textarea>
           );
       }
 
       // File/Image upload
+
       if (f.interface === 'file-image' || f.interface === 'files') {
           return (
               <div className="w-full border-2 border-dashed border-gray-300 hover:border-[#5340FF] transition-colors rounded-lg flex flex-col items-center justify-center py-8 bg-gray-50/50 cursor-pointer min-h-[160px]">

@@ -9598,6 +9598,73 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
   ],
   "directus_users": [
     {
+      "field": "organization_id",
+      "type": "integer",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Cơ quan công tác",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "org",
+      "width": "full",
+      "sort": 1,
+      "relation": {
+        "related_collection": "organizations",
+        "related_field": null
+      }
+    },
+    {
+      "field": "tabs",
+      "type": "alias",
+      "interface": "group-tabs",
+      "options": null,
+      "label": "tabs",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 1,
+      "relation": null
+    },
+    {
+      "field": "email",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Email đăng nhập",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "account",
+      "width": "half",
+      "sort": 1,
+      "relation": null
+    },
+    {
+      "field": "first_name",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Họ",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "profile",
+      "width": "half",
+      "sort": 1,
+      "relation": null
+    },
+    {
       "field": "website_id",
       "type": "integer",
       "interface": "select-dropdown-m2o",
@@ -9619,25 +9686,162 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       }
     },
     {
-      "field": "organization_id",
-      "type": "integer",
-      "interface": "select-dropdown-m2o",
-      "options": {
-        "template": "{{organization_name}}"
-      },
-      "label": "organization_id",
+      "field": "account",
+      "type": "alias",
+      "interface": "group-raw",
+      "options": null,
+      "label": "Thông tin Tài khoản",
       "note": "",
       "required": false,
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tabs",
+      "width": "full",
+      "sort": 2,
+      "relation": null
+    },
+    {
+      "field": "password",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Mật khẩu",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "account",
+      "width": "half",
+      "sort": 2,
+      "relation": null
+    },
+    {
+      "field": "last_name",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Tên",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "profile",
+      "width": "half",
+      "sort": 2,
+      "relation": null
+    },
+    {
+      "field": "profile",
+      "type": "alias",
+      "interface": "group-raw",
+      "options": null,
+      "label": "Thông tin Cá nhân",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "tabs",
       "width": "full",
       "sort": 3,
+      "relation": null
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          {
+            "text": "Active",
+            "value": "active"
+          },
+          {
+            "text": "Suspended",
+            "value": "suspended"
+          }
+        ]
+      },
+      "label": "Trạng thái",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "account",
+      "width": "half",
+      "sort": 3,
+      "relation": null
+    },
+    {
+      "field": "avatar",
+      "type": "uuid",
+      "interface": "file-image",
+      "options": null,
+      "label": "Ảnh đại diện",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "profile",
+      "width": "full",
+      "sort": 3,
+      "relation": null
+    },
+    {
+      "field": "org",
+      "type": "alias",
+      "interface": "group-raw",
+      "options": null,
+      "label": "Đơn vị / Cơ quan",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "tabs",
+      "width": "full",
+      "sort": 4,
+      "relation": null
+    },
+    {
+      "field": "role",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Vai trò (Role)",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "account",
+      "width": "half",
+      "sort": 4,
       "relation": {
-        "related_collection": "organizations",
+        "related_collection": "directus_roles",
         "related_field": null
       }
+    },
+    {
+      "field": "phone",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Số điện thoại",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "profile",
+      "width": "half",
+      "sort": 4,
+      "relation": null
     }
   ],
   "discussion_event": [
@@ -42494,6 +42698,1925 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "width": "full",
       "sort": 15,
       "relation": null
+    }
+  ],
+  "directus_roles": [
+    {
+      "field": "name",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Tên nhóm quyền",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 1,
+      "relation": null
+    },
+    {
+      "field": "description",
+      "type": "string",
+      "interface": "textarea",
+      "options": null,
+      "label": "Mô tả",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 2,
+      "relation": null
+    },
+    {
+      "field": "icon",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Icon",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 3,
+      "relation": null
+    },
+    {
+      "field": "color",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Color",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 4,
+      "relation": null
+    },
+    {
+      "field": "admin_access",
+      "type": "boolean",
+      "interface": "boolean",
+      "options": null,
+      "label": "Admin Access",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 5,
+      "relation": null
+    },
+    {
+      "field": "app_access",
+      "type": "boolean",
+      "interface": "boolean",
+      "options": null,
+      "label": "App Access",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 6,
+      "relation": null
+    },
+    {
+      "field": "enforce_tfa",
+      "type": "boolean",
+      "interface": "boolean",
+      "options": null,
+      "label": "Bắt buộc 2FA",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 7,
+      "relation": null
+    },
+    {
+      "field": "role_metadata",
+      "type": "alias",
+      "interface": "list-o2m",
+      "options": {
+        "fields": [
+          "role_type",
+          "note"
+        ]
+      },
+      "label": "Phân loại nhóm (Metadata)",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 8,
+      "relation": null
+    },
+    {
+      "field": "policies",
+      "type": "alias",
+      "interface": "list-m2m",
+      "options": {
+        "fields": [
+          "name",
+          "description"
+        ]
+      },
+      "label": "Access Policies",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 9,
+      "relation": null
+    },
+    {
+      "field": "users",
+      "type": "alias",
+      "interface": "list-o2m",
+      "options": {
+        "fields": [
+          "first_name",
+          "email"
+        ]
+      },
+      "label": "Người dùng",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 10,
+      "relation": null
+    }
+  ],
+  "directus_access": [
+    {
+      "field": "name",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Tên Policy",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 1,
+      "relation": null
+    },
+    {
+      "field": "description",
+      "type": "string",
+      "interface": "textarea",
+      "options": null,
+      "label": "Mô tả",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 2,
+      "relation": null
+    },
+    {
+      "field": "permissions",
+      "type": "json",
+      "interface": "input-code",
+      "options": null,
+      "label": "Quyền trên Collection (JSON)",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 3,
+      "relation": null
+    }
+  ],
+  "role_metadata": [
+    {
+      "field": "role_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Vai trò (Role)",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 1,
+      "relation": {
+        "related_collection": "directus_roles",
+        "related_field": null
+      }
+    },
+    {
+      "field": "role_type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          {
+            "text": "Cán bộ",
+            "value": "can_bo"
+          },
+          {
+            "text": "Cộng tác viên",
+            "value": "cong_tac_vien"
+          },
+          {
+            "text": "Quản trị viên",
+            "value": "quan_tri"
+          },
+          {
+            "text": "Người dùng công cộng",
+            "value": "nguoi_dung_cong"
+          },
+          {
+            "text": "Khác",
+            "value": "khac"
+          }
+        ]
+      },
+      "label": "Loại nghiệp vụ",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 2,
+      "relation": null
+    },
+    {
+      "field": "note",
+      "type": "text",
+      "interface": "textarea",
+      "options": null,
+      "label": "Ghi chú nội bộ",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 3,
+      "relation": null
+    },
+    {
+      "field": "date_created",
+      "type": "timestamp",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày tạo",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 100,
+      "relation": null
+    },
+    {
+      "field": "date_updated",
+      "type": "timestamp",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày cập nhật",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 101,
+      "relation": null
+    },
+    {
+      "field": "user_created",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Người tạo",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 102,
+      "relation": {
+        "related_collection": "directus_users",
+        "related_field": null
+      }
+    },
+    {
+      "field": "user_updated",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Người cập nhật cuối",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 103,
+      "relation": {
+        "related_collection": "directus_users",
+        "related_field": null
+      }
+    }
+  ],
+  "collaborator_profiles": [
+    {
+      "field": "full_name",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Họ và tên",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 1,
+      "relation": null
+    },
+    {
+      "field": "phone",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Số điện thoại",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 2,
+      "relation": null
+    },
+    {
+      "field": "email",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Email liên hệ",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 3,
+      "relation": null
+    },
+    {
+      "field": "citizen_id",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Số CMND/CCCD",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 4,
+      "relation": null
+    },
+    {
+      "field": "address",
+      "type": "text",
+      "interface": "textarea",
+      "options": null,
+      "label": "Địa chỉ",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 5,
+      "relation": null
+    },
+    {
+      "field": "expertise",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Lĩnh vực chuyên môn",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 6,
+      "relation": null
+    },
+    {
+      "field": "work_scope",
+      "type": "text",
+      "interface": "textarea",
+      "options": null,
+      "label": "Phạm vi công việc",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 7,
+      "relation": null
+    },
+    {
+      "field": "suggested_permission_level",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          {
+            "text": "Cơ bản",
+            "value": "basic"
+          },
+          {
+            "text": "Mở rộng",
+            "value": "extended"
+          },
+          {
+            "text": "Đầy đủ",
+            "value": "full"
+          }
+        ]
+      },
+      "label": "Mức quyền đề xuất",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 8,
+      "relation": null
+    },
+    {
+      "field": "cooperation_status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          {
+            "text": "Active",
+            "value": "active"
+          },
+          {
+            "text": "Inactive",
+            "value": "inactive"
+          },
+          {
+            "text": "Pending",
+            "value": "pending"
+          }
+        ]
+      },
+      "label": "Trạng thái hợp tác",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 9,
+      "relation": null
+    },
+    {
+      "field": "start_date",
+      "type": "date",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày bắt đầu hợp tác",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 10,
+      "relation": null
+    },
+    {
+      "field": "end_date",
+      "type": "date",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày kết thúc",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 11,
+      "relation": null
+    },
+    {
+      "field": "organization_id",
+      "type": "integer",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Cơ quan đại diện",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 12,
+      "relation": {
+        "related_collection": "organizations",
+        "related_field": null
+      }
+    },
+    {
+      "field": "portal_user_id",
+      "type": "integer",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Tài khoản Cổng (Tùy chọn)",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 13,
+      "relation": {
+        "related_collection": "additional_information",
+        "related_field": null
+      }
+    },
+    {
+      "field": "note",
+      "type": "text",
+      "interface": "textarea",
+      "options": null,
+      "label": "Ghi chú nội bộ",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 14,
+      "relation": null
+    },
+    {
+      "field": "files",
+      "type": "alias",
+      "interface": "list-o2m",
+      "options": null,
+      "label": "Tài liệu đính kèm",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 15,
+      "relation": null
+    },
+    {
+      "field": "date_created",
+      "type": "timestamp",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày tạo",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 100,
+      "relation": null
+    },
+    {
+      "field": "date_updated",
+      "type": "timestamp",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày cập nhật",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 101,
+      "relation": null
+    },
+    {
+      "field": "user_created",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Người tạo",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 102,
+      "relation": {
+        "related_collection": "directus_users",
+        "related_field": null
+      }
+    },
+    {
+      "field": "user_updated",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Người cập nhật cuối",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 103,
+      "relation": {
+        "related_collection": "directus_users",
+        "related_field": null
+      }
+    }
+  ],
+  "cms_menu_permissions": [
+    {
+      "field": "function_name",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Tên chức năng / Menu item",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 1,
+      "relation": null
+    },
+    {
+      "field": "function_code",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Mã định danh duy nhất",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 2,
+      "relation": null
+    },
+    {
+      "field": "function_type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          {
+            "text": "Menu",
+            "value": "menu"
+          },
+          {
+            "text": "Button",
+            "value": "button"
+          },
+          {
+            "text": "API",
+            "value": "api"
+          },
+          {
+            "text": "Module",
+            "value": "module"
+          }
+        ]
+      },
+      "label": "Loại chức năng",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 3,
+      "relation": null
+    },
+    {
+      "field": "module_name",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Module liên quan",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 4,
+      "relation": null
+    },
+    {
+      "field": "role_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Nhóm quyền áp dụng",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 5,
+      "relation": {
+        "related_collection": "directus_roles",
+        "related_field": null
+      }
+    },
+    {
+      "field": "access_level",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          {
+            "text": "None",
+            "value": "none"
+          },
+          {
+            "text": "Read",
+            "value": "read"
+          },
+          {
+            "text": "Read/Write",
+            "value": "read_write"
+          },
+          {
+            "text": "Full",
+            "value": "full"
+          }
+        ]
+      },
+      "label": "Quyền truy cập",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 6,
+      "relation": null
+    },
+    {
+      "field": "is_active",
+      "type": "boolean",
+      "interface": "boolean",
+      "options": null,
+      "label": "Kích hoạt",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 7,
+      "relation": null
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "options": null,
+      "label": "Ghi chú",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 8,
+      "relation": null
+    },
+    {
+      "field": "date_created",
+      "type": "timestamp",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày tạo",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 100,
+      "relation": null
+    },
+    {
+      "field": "date_updated",
+      "type": "timestamp",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày cập nhật",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 101,
+      "relation": null
+    },
+    {
+      "field": "user_created",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Người tạo",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 102,
+      "relation": {
+        "related_collection": "directus_users",
+        "related_field": null
+      }
+    },
+    {
+      "field": "user_updated",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Người cập nhật cuối",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 103,
+      "relation": {
+        "related_collection": "directus_users",
+        "related_field": null
+      }
+    }
+  ],
+  "content_publish_rules": [
+    {
+      "field": "rule_name",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Tên gợi nhớ quy tắc",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 1,
+      "relation": null
+    },
+    {
+      "field": "rule_code",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Mã định danh quy tắc",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 2,
+      "relation": null
+    },
+    {
+      "field": "content_type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          {
+            "text": "Tin bài",
+            "value": "article"
+          },
+          {
+            "text": "Văn bản",
+            "value": "van_ban"
+          },
+          {
+            "text": "Hồ sơ",
+            "value": "ho_so"
+          },
+          {
+            "text": "Luật sư",
+            "value": "law_expert"
+          },
+          {
+            "text": "Khảo sát",
+            "value": "survey"
+          }
+        ]
+      },
+      "label": "Loại nội dung",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 3,
+      "relation": null
+    },
+    {
+      "field": "org_type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          {
+            "text": "Trung ương",
+            "value": "trung_uong"
+          },
+          {
+            "text": "Bộ ngành",
+            "value": "bo_nganh"
+          },
+          {
+            "text": "Tỉnh thành",
+            "value": "tinh_thanh"
+          },
+          {
+            "text": "Quận huyện",
+            "value": "quan_huyen"
+          },
+          {
+            "text": "Xã phường",
+            "value": "xa_phuong"
+          }
+        ]
+      },
+      "label": "Cấp hành chính",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 4,
+      "relation": null
+    },
+    {
+      "field": "allowed_actions",
+      "type": "json",
+      "interface": "input-code",
+      "options": null,
+      "label": "Mảng hành động cho phép",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 5,
+      "relation": null
+    },
+    {
+      "field": "require_approval",
+      "type": "boolean",
+      "interface": "boolean",
+      "options": null,
+      "label": "Cần duyệt cấp trên",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 6,
+      "relation": null
+    },
+    {
+      "field": "approver_org_type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          {
+            "text": "Trung ương",
+            "value": "trung_uong"
+          },
+          {
+            "text": "Bộ ngành",
+            "value": "bo_nganh"
+          },
+          {
+            "text": "Tỉnh thành",
+            "value": "tinh_thanh"
+          },
+          {
+            "text": "Quận huyện",
+            "value": "quan_huyen"
+          }
+        ]
+      },
+      "label": "Cấp duyệt thầm quyền",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 7,
+      "relation": null
+    },
+    {
+      "field": "allow_delete",
+      "type": "boolean",
+      "interface": "boolean",
+      "options": null,
+      "label": "Được phép xoá",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 8,
+      "relation": null
+    },
+    {
+      "field": "allow_restore",
+      "type": "boolean",
+      "interface": "boolean",
+      "options": null,
+      "label": "Được phép khôi phục",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 9,
+      "relation": null
+    },
+    {
+      "field": "is_active",
+      "type": "boolean",
+      "interface": "boolean",
+      "options": null,
+      "label": "Quy tắc đang hiệu lực",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 10,
+      "relation": null
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "options": null,
+      "label": "Ghi chú",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 11,
+      "relation": null
+    },
+    {
+      "field": "date_created",
+      "type": "timestamp",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày tạo",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 100,
+      "relation": null
+    },
+    {
+      "field": "date_updated",
+      "type": "timestamp",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày cập nhật",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 101,
+      "relation": null
+    },
+    {
+      "field": "user_created",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Người tạo",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 102,
+      "relation": {
+        "related_collection": "directus_users",
+        "related_field": null
+      }
+    },
+    {
+      "field": "user_updated",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Người cập nhật cuối",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 103,
+      "relation": {
+        "related_collection": "directus_users",
+        "related_field": null
+      }
+    }
+  ],
+  "collaborator_profiles_files": [
+    {
+      "field": "collaborator_profiles_id",
+      "type": "integer",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Hồ sơ CTV",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 1,
+      "relation": {
+        "related_collection": "collaborator_profiles",
+        "related_field": null
+      }
+    },
+    {
+      "field": "directus_files_id",
+      "type": "uuid",
+      "interface": "file-image",
+      "options": null,
+      "label": "File đính kèm",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 2,
+      "relation": {
+        "related_collection": "directus_files",
+        "related_field": null
+      }
+    },
+    {
+      "field": "file_type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          {
+            "text": "Contract",
+            "value": "contract"
+          },
+          {
+            "text": "ID Card",
+            "value": "id_card"
+          },
+          {
+            "text": "Certificate",
+            "value": "certificate"
+          },
+          {
+            "text": "Other",
+            "value": "other"
+          }
+        ]
+      },
+      "label": "Loại tài liệu",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 3,
+      "relation": null
+    },
+    {
+      "field": "note",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Ghi chú tài liệu",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 4,
+      "relation": null
+    }
+  ],
+  "cms_permission_configs": [
+    {
+      "field": "policy_ref",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Access Policy Reference (Tên/ID)",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 1,
+      "relation": null
+    },
+    {
+      "field": "role_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Role liên quan",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 2,
+      "relation": {
+        "related_collection": "directus_roles",
+        "related_field": null
+      }
+    },
+    {
+      "field": "config_version",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Phiên bản cấu hình",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 3,
+      "relation": null
+    },
+    {
+      "field": "change_reason",
+      "type": "text",
+      "interface": "textarea",
+      "options": null,
+      "label": "Lý do thay đổi cấu hình",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 4,
+      "relation": null
+    },
+    {
+      "field": "effective_date",
+      "type": "date",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày hiệu lực",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 5,
+      "relation": null
+    },
+    {
+      "field": "is_active",
+      "type": "boolean",
+      "interface": "boolean",
+      "options": null,
+      "label": "Đang thiết lập",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 6,
+      "relation": null
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "options": null,
+      "label": "Ghi chú chi tiết",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 7,
+      "relation": null
+    },
+    {
+      "field": "date_created",
+      "type": "timestamp",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày tạo",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 100,
+      "relation": null
+    },
+    {
+      "field": "date_updated",
+      "type": "timestamp",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày cập nhật",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 101,
+      "relation": null
+    },
+    {
+      "field": "user_created",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Người tạo",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 102,
+      "relation": {
+        "related_collection": "directus_users",
+        "related_field": null
+      }
+    },
+    {
+      "field": "user_updated",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Người cập nhật cuối",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 103,
+      "relation": {
+        "related_collection": "directus_users",
+        "related_field": null
+      }
+    }
+  ],
+  "staff_profiles": [
+    {
+      "field": "account_type",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          {
+            "text": "Cán bộ CMS (Loại 1)",
+            "value": "cms_account"
+          },
+          {
+            "text": "Cán bộ Cổng (Loại 2)",
+            "value": "portal_only"
+          }
+        ]
+      },
+      "label": "Loại cán bộ",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 1,
+      "relation": null
+    },
+    {
+      "field": "user_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Tài khoản CMS",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 2,
+      "relation": {
+        "related_collection": "directus_users",
+        "related_field": null
+      }
+    },
+    {
+      "field": "portal_user_id",
+      "type": "integer",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Tài khoản Cổng (PLQG)",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 3,
+      "relation": {
+        "related_collection": "additional_information",
+        "related_field": null
+      }
+    },
+    {
+      "field": "full_name",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Họ và tên",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 4,
+      "relation": null
+    },
+    {
+      "field": "email",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Email liên hệ",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 5,
+      "relation": null
+    },
+    {
+      "field": "phone_number",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Số điện thoại",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 6,
+      "relation": null
+    },
+    {
+      "field": "avatar",
+      "type": "uuid",
+      "interface": "file-image",
+      "options": null,
+      "label": "Ảnh đại diện",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 7,
+      "relation": {
+        "related_collection": "directus_files",
+        "related_field": null
+      }
+    },
+    {
+      "field": "organization_id",
+      "type": "integer",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Cơ quan công tác",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 8,
+      "relation": {
+        "related_collection": "organizations",
+        "related_field": null
+      }
+    },
+    {
+      "field": "position",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Chức vụ",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 9,
+      "relation": null
+    },
+    {
+      "field": "staff_card_number",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Số thẻ công chức / viên chức",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 10,
+      "relation": null
+    },
+    {
+      "field": "join_date",
+      "type": "date",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày vào cơ quan",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 11,
+      "relation": null
+    },
+    {
+      "field": "expertise",
+      "type": "text",
+      "interface": "textarea",
+      "options": null,
+      "label": "Chuyên môn phụ trách",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 12,
+      "relation": null
+    },
+    {
+      "field": "citizen_id",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Số CMND/CCCD",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 13,
+      "relation": null
+    },
+    {
+      "field": "date_of_birth",
+      "type": "date",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày sinh",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 14,
+      "relation": null
+    },
+    {
+      "field": "status",
+      "type": "string",
+      "interface": "select-dropdown",
+      "options": {
+        "choices": [
+          {
+            "text": "Đang công tác",
+            "value": "active"
+          },
+          {
+            "text": "Tạm nghỉ",
+            "value": "leave"
+          },
+          {
+            "text": "Đã nghỉ việc",
+            "value": "inactive"
+          }
+        ]
+      },
+      "label": "Trạng thái công tác",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 15,
+      "relation": null
+    },
+    {
+      "field": "notes",
+      "type": "text",
+      "interface": "textarea",
+      "options": null,
+      "label": "Ghi chú nội bộ",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 16,
+      "relation": null
+    },
+    {
+      "field": "date_created",
+      "type": "timestamp",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày tạo",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 100,
+      "relation": null
+    },
+    {
+      "field": "date_updated",
+      "type": "timestamp",
+      "interface": "datetime",
+      "options": null,
+      "label": "Ngày cập nhật",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 101,
+      "relation": null
+    },
+    {
+      "field": "user_created",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Người tạo",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 102,
+      "relation": {
+        "related_collection": "directus_users",
+        "related_field": null
+      }
+    },
+    {
+      "field": "user_updated",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Người cập nhật cuối",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "half",
+      "sort": 103,
+      "relation": {
+        "related_collection": "directus_users",
+        "related_field": null
+      }
     }
   ]
 };

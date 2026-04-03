@@ -56,6 +56,9 @@ export const MENU_GROUPS = [
       { id: "system_field", label: "Dữ liệu hệ thống", icon: "FileText" },
       { id: "user_login_logs", label: "user_login_logs", icon: "FileText" },
       { id: "websites", label: "Quản trị website", icon: "FileText" },
+      { id: "cms_menu_permissions", label: "Phân quyền Menu", icon: "FileText" },
+      { id: "content_publish_rules", label: "Quy tắc phân cấp đăng bài", icon: "FileText" },
+      { id: "cms_permission_configs", label: "Cấu hình quyền siêu dữ liệu", icon: "FileText" },
     ]
   },
   {
@@ -396,6 +399,9 @@ export const MENU_GROUPS = [
       { id: "user_certificates", label: "Link chứng chỉ người dùng", icon: "FileText" },
       { id: "user_notifications", label: "Thông báo người dùng", icon: "FileText" },
       { id: "user_social_links", label: "Link mxh người dùng", icon: "FileText" },
+      { id: "role_metadata", label: "Phân loại nhóm (Metadata)", icon: "FileText" },
+      { id: "staff_profiles", label: "Hồ sơ Cán bộ", icon: "FileText" },
+      { id: "collaborator_profiles", label: "Hồ sơ Cộng tác viên", icon: "FileText" },
     ]
   },
 ];

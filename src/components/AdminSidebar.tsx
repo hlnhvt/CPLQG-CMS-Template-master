@@ -42,7 +42,7 @@ export default function AdminSidebar() {
           </Link>
 
           <NavIcon icon={Box} href="/collections/content_articles" active={isContent} />
-          <NavIcon icon={Users} href="#" />
+          <NavIcon icon={Users} href="/collections/directus_users" />
           <NavIcon icon={Folder} href="#" />
           <NavIcon icon={TrendingUp} href="/reports/article-by-category" active={isReports} />
           <NavIcon icon={Settings} href="/settings/data-model" active={isSettings} />
@@ -66,8 +66,8 @@ export default function AdminSidebar() {
             <>
               <SidebarItem icon={Box} label="Mô Hình Dữ Liệu" href="/settings/data-model" active={pathname.includes('/data-model')} />
               <SidebarItem icon={TrendingUp} label="Flows" href="#" />
-              <SidebarItem icon={Users} label="Vai trò người dùng" href="#" />
-              <SidebarItem icon={Lock} label="Access Policies" href="#" />
+              <SidebarItem icon={Users} label="Vai trò người dùng" href="/collections/directus_roles" />
+              <SidebarItem icon={Lock} label="Access Policies" href="/collections/directus_access" />
               
               <div className="my-2 border-t border-gray-200"></div>
               
