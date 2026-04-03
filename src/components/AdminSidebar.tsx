@@ -2,12 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
 import {
   Box, Users, Folder, TrendingUp, Settings, HelpCircle,
   Bell, User, ChevronRight, Search, Plus, Save, DownloadCloud,
   Layers, Lock, Sliders, Bookmark, Globe, Sparkles, ShoppingBag,
   Puzzle, AlertCircle, MessageSquare, LayoutTemplate, FileText, Hash, Megaphone,
-  Radio, BarChart
+  Radio, BarChart, Activity
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -80,8 +81,10 @@ export default function AdminSidebar() {
                 <SidebarItem icon={FileText} label="Quản lý tin tức" href="/content/news" active={pathname.includes('/news')} indent />
                 <SidebarItem icon={MessageSquare} label="Comment" href="#" indent />
                 <SidebarItem icon={Layers} label="Quản lý danh mục" href="/content/categories" active={pathname.includes('/categories')} indent />
+                <SidebarItem icon={Bookmark} label="Quản lý chủ đề" href="/content/content_topic" active={pathname.includes('/content_topic')} indent />
                 <SidebarItem icon={LayoutTemplate} label="Quản lý cơ quan" href="#" indent />
                 <SidebarItem icon={Hash} label="Quản lý Tags" href="#" indent />
+                <SidebarItem icon={BarChart} label="Infographics" href="/content/infographics" active={pathname.includes('/infographics')} indent />
               </SidebarGroup>
               <SidebarGroup label="Văn bản góp ý dự thảo" icon={Folder} />
               <SidebarGroup label="Tọa đàm / Sự kiện" icon={Folder} />
@@ -89,8 +92,15 @@ export default function AdminSidebar() {
               <SidebarGroup label="Phân cấp phân quyền" icon={Folder} />
               <SidebarGroup label="Phản ánh chính sách" icon={Folder} />
               <SidebarGroup label="Quản lý radio" icon={Radio} />
-              <SidebarGroup label="Infographics" icon={BarChart} />
               <SidebarGroup label="Hộ tịch, Quốc tịch, Nuôi con..." icon={Folder} />
+              
+              <div className="my-2 border-t border-gray-200"></div>
+
+              <SidebarGroup label="Thống kê" icon={BarChart} expanded={pathname.includes('/reports')}>
+                <SidebarItem icon={FileText} label="TK theo chuyên mục" href="/reports/article-by-category" active={pathname.includes('/reports/article-by-category')} indent />
+                <SidebarItem icon={Users} label="TK theo cộng tác viên" href="/reports/article-by-contributor" active={pathname.includes('/reports/article-by-contributor')} indent />
+                <SidebarItem icon={Activity} label="TK theo trạng thái" href="/reports/article-by-status" active={pathname.includes('/reports/article-by-status')} indent />
+              </SidebarGroup>
             </>
           )}
         </div>
@@ -126,17 +136,26 @@ function SidebarItem({ icon: Icon, label, active, href, indent }: { icon: any, l
   );
 }
 
-function SidebarGroup({ icon: Icon, label, expanded, children }: { icon: any, label: string, expanded?: boolean, children?: React.ReactNode }) {
+function SidebarGroup({ icon: Icon, label, expanded: initialExpanded, children }: { icon: any, label: string, expanded?: boolean, children?: React.ReactNode }) {
+  const [isExpanded, setIsExpanded] = useState(initialExpanded || false);
+
+  useEffect(() => {
+    if (initialExpanded) setIsExpanded(true);
+  }, [initialExpanded]);
+
   return (
     <div className="flex flex-col">
-      <div className={cn("flex items-center justify-between px-3 py-2 rounded-md transition-colors cursor-pointer hover:bg-gray-100/80 text-gray-700")}>
+      <div 
+        className={cn("flex items-center justify-between px-3 py-2 rounded-md transition-colors cursor-pointer hover:bg-gray-100/80 text-gray-700")}
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
         <div className="flex items-center gap-3">
           <Icon size={18} className="text-gray-400" />
           <span className="truncate">{label}</span>
         </div>
-        <ChevronRight size={14} className={cn("text-gray-400 transition-transform", expanded ? "rotate-90" : "")} />
+        <ChevronRight size={14} className={cn("text-gray-400 transition-transform", isExpanded ? "rotate-90" : "")} />
       </div>
-      {expanded && children && (
+      {isExpanded && children && (
         <div className="flex flex-col mt-0.5">
           {children}
         </div>
