@@ -1,0 +1,478 @@
+[
+  {
+    "field": "id",
+    "interface": "input",
+    "sort": 1,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "article_thumbnail_image",
+    "interface": "file-image",
+    "sort": 1,
+    "group": "body",
+    "width": "half"
+  },
+  {
+    "field": "body",
+    "interface": "group-raw",
+    "sort": 1,
+    "group": "tabs_body",
+    "width": "full"
+  },
+  {
+    "field": "seo_meta",
+    "interface": "seo-interface",
+    "sort": 1,
+    "group": "seo",
+    "width": "full"
+  },
+  {
+    "field": "multimedia_tab",
+    "interface": "group-raw",
+    "sort": 1,
+    "group": "tabs_body",
+    "width": "full"
+  },
+  {
+    "field": "is_multimedia_video",
+    "interface": "boolean",
+    "sort": 1,
+    "group": "Video",
+    "width": "full"
+  },
+  {
+    "field": "is_multimedia_image",
+    "interface": "boolean",
+    "sort": 1,
+    "group": "Image",
+    "width": "full"
+  },
+  {
+    "field": "is_multimedia",
+    "interface": null,
+    "sort": 1,
+    "group": "multimedia_tab",
+    "width": "full"
+  },
+  {
+    "field": "sort",
+    "interface": "input",
+    "sort": 2,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "seo",
+    "interface": "group-raw",
+    "sort": 2,
+    "group": "tabs_body",
+    "width": "full"
+  },
+  {
+    "field": "enable_feature_image_in_detail",
+    "interface": "boolean",
+    "sort": 2,
+    "group": "body",
+    "width": "half"
+  },
+  {
+    "field": "multimedia_type",
+    "interface": "radio-cards-interface",
+    "sort": 2,
+    "group": "multimedia_tab",
+    "width": "full"
+  },
+  {
+    "field": "multimedia_type_video",
+    "interface": "radio-cards-interface",
+    "sort": 2,
+    "group": "Video",
+    "width": "full"
+  },
+  {
+    "field": "multimedia_type_image",
+    "interface": "radio-cards-interface",
+    "sort": 2,
+    "group": "Image",
+    "width": "full"
+  },
+  {
+    "field": "image_caption",
+    "interface": "boolean",
+    "sort": 3,
+    "group": "body",
+    "width": "half"
+  },
+  {
+    "field": "title",
+    "interface": "input",
+    "sort": 3,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "attachment_files",
+    "interface": "files",
+    "sort": 3,
+    "group": "multimedia_tab",
+    "width": "half"
+  },
+  {
+    "field": "Video",
+    "interface": "group-raw",
+    "sort": 3,
+    "group": "tabs_body",
+    "width": "full"
+  },
+  {
+    "field": "attachment_video",
+    "interface": "files",
+    "sort": 3,
+    "group": "Video",
+    "width": "full"
+  },
+  {
+    "field": "attactment_image",
+    "interface": "files",
+    "sort": 3,
+    "group": "Image",
+    "width": "full"
+  },
+  {
+    "field": "tag_id",
+    "interface": "list-o2m",
+    "sort": 4,
+    "group": "body",
+    "width": "half"
+  },
+  {
+    "field": "slug",
+    "interface": "extension-wpslug",
+    "sort": 4,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "Image",
+    "interface": "group-raw",
+    "sort": 4,
+    "group": "tabs_body",
+    "width": "full"
+  },
+  {
+    "field": "subtitle_video",
+    "interface": "files",
+    "sort": 4,
+    "group": "Video",
+    "width": "full"
+  },
+  {
+    "field": "eventName_Image",
+    "interface": "input",
+    "sort": 4,
+    "group": "Image",
+    "width": "full"
+  },
+  {
+    "field": "subtitle_files",
+    "interface": "files",
+    "sort": 4,
+    "group": "multimedia_tab",
+    "width": "half"
+  },
+  {
+    "field": "user_created",
+    "interface": "select-dropdown-m2o",
+    "sort": 5,
+    "group": "body",
+    "width": "half"
+  },
+  {
+    "field": "content",
+    "interface": "input-rich-text-html",
+    "sort": 5,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "eventName",
+    "interface": "input",
+    "sort": 5,
+    "group": "Video",
+    "width": "full"
+  },
+  {
+    "field": "imageTitle",
+    "interface": "input",
+    "sort": 5,
+    "group": "Image",
+    "width": "full"
+  },
+  {
+    "field": "is_featured_article",
+    "interface": "boolean",
+    "sort": 6,
+    "group": "body",
+    "width": "half"
+  },
+  {
+    "field": "summary",
+    "interface": "input-multiline",
+    "sort": 6,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "movieTitle",
+    "interface": "input",
+    "sort": 6,
+    "group": "Video",
+    "width": "full"
+  },
+  {
+    "field": "photographer",
+    "interface": "input",
+    "sort": 6,
+    "group": "Image",
+    "width": "half"
+  },
+  {
+    "field": "tabs_body",
+    "interface": "group-tabs",
+    "sort": 7,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "recorder",
+    "interface": "input",
+    "sort": 7,
+    "group": "Video",
+    "width": "half"
+  },
+  {
+    "field": "photoPlace",
+    "interface": "input",
+    "sort": 7,
+    "group": "Image",
+    "width": "half"
+  },
+  {
+    "field": "category_id",
+    "interface": "select-dropdown-m2o",
+    "sort": 8,
+    "group": null,
+    "width": "half"
+  },
+  {
+    "field": "recordPlace",
+    "interface": "input",
+    "sort": 8,
+    "group": "Video",
+    "width": "half"
+  },
+  {
+    "field": "photoTime",
+    "interface": "datetime",
+    "sort": 8,
+    "group": "Image",
+    "width": "half"
+  },
+  {
+    "field": "published_date",
+    "interface": "datetime",
+    "sort": 9,
+    "group": null,
+    "width": "half"
+  },
+  {
+    "field": "colour",
+    "interface": "select-dropdown",
+    "sort": 9,
+    "group": "Image",
+    "width": "half"
+  },
+  {
+    "field": "recordDate",
+    "interface": "datetime",
+    "sort": 9,
+    "group": "Video",
+    "width": "half"
+  },
+  {
+    "field": "status",
+    "interface": "select-dropdown",
+    "sort": 10,
+    "group": null,
+    "width": "half"
+  },
+  {
+    "field": "language",
+    "interface": "select-dropdown",
+    "sort": 10,
+    "group": "Video",
+    "width": "half"
+  },
+  {
+    "field": "filmSize",
+    "interface": "input",
+    "sort": 10,
+    "group": "Image",
+    "width": "half"
+  },
+  {
+    "field": "date_created",
+    "interface": "datetime",
+    "sort": 11,
+    "group": null,
+    "width": "half"
+  },
+  {
+    "field": "playTime",
+    "interface": "input",
+    "sort": 11,
+    "group": "Video",
+    "width": "half"
+  },
+  {
+    "field": "description_Image",
+    "interface": "input",
+    "sort": 11,
+    "group": "Image",
+    "width": "full"
+  },
+  {
+    "field": "user_updated",
+    "interface": "select-dropdown-m2o",
+    "sort": 12,
+    "group": null,
+    "width": "half"
+  },
+  {
+    "field": "quality",
+    "interface": "input",
+    "sort": 12,
+    "group": "Video",
+    "width": "half"
+  },
+  {
+    "field": "date_updated",
+    "interface": "datetime",
+    "sort": 13,
+    "group": null,
+    "width": "half"
+  },
+  {
+    "field": "description",
+    "interface": "input",
+    "sort": 13,
+    "group": "Video",
+    "width": "full"
+  },
+  {
+    "field": "author",
+    "interface": "input",
+    "sort": 14,
+    "group": null,
+    "width": "half"
+  },
+  {
+    "field": "website_id",
+    "interface": "select-dropdown-m2o",
+    "sort": 15,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "organization_id",
+    "interface": "select-dropdown-m2o",
+    "sort": 16,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "organization_assignee",
+    "interface": "input",
+    "sort": 17,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "user_assignee",
+    "interface": "input",
+    "sort": 18,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "old_id",
+    "interface": "input",
+    "sort": 19,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "user_reviewed",
+    "interface": "select-dropdown-m2o",
+    "sort": 20,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "status_reason",
+    "interface": "input-multiline",
+    "sort": 21,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "adminui_guiduyet_btn",
+    "interface": "publish-button",
+    "sort": 22,
+    "group": null,
+    "width": "half"
+  },
+  {
+    "field": "adminui_habai_btn",
+    "interface": "publish-button",
+    "sort": 23,
+    "group": null,
+    "width": "half"
+  },
+  {
+    "field": "adminui_tuchoi_btn",
+    "interface": "publish-button",
+    "sort": 24,
+    "group": null,
+    "width": "half"
+  },
+  {
+    "field": "adminui_xuatban",
+    "interface": "publish-button",
+    "sort": 25,
+    "group": null,
+    "width": "half"
+  },
+  {
+    "field": "adminui_phuchoi_btn",
+    "interface": "publish-button",
+    "sort": 26,
+    "group": null,
+    "width": "half"
+  },
+  {
+    "field": "comments",
+    "interface": "list-o2m",
+    "sort": 27,
+    "group": null,
+    "width": "full"
+  },
+  {
+    "field": "adminui_pheduyet_btn",
+    "interface": "publish-button",
+    "sort": 28,
+    "group": null,
+    "width": "half"
+  }
+]

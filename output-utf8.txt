@@ -1,0 +1,225 @@
+Total collections: 237
+Total fields: 2114
+Visible Non-System Collections: 152
+
+Group [Ungrouped]:
+ - Content_Management (Quản lý nội dung)
+ - Dien_dan_chinh_sach_phap_luat (Diễn đàn chính sách pháp luật)
+ - Nghi_quyet_66 (Nghị quyết 66-NQ/TW)
+ - binh_luan_tin_tuc (comment)
+ - delegation_and_authorization (Phân cấp phân quyền)
+ - discussion_event_folder (Bình luận & Sự kiện)
+ - documents_contracts
+ - draft_document_manager (Văn bản góp ý dự thảo)
+ - draft_legislation
+ - event_questions
+ - frequently_asked_questions
+ - ho_dap_tu_van_phap_luat (Hỏi đáp - tư vấn pháp luật)
+ - ho_tro_phap_ly (Hỗ trợ pháp lý)
+ - infographics (Infographics)
+ - languages
+ - layout_schema_fields
+ - layout_schemas
+ - legal_aid_providers
+ - legal_compliance_guide
+ - legal_document_manager (Legal Document System)
+ - legal_faq
+ - legal_support
+ - linked_websites
+ - nationality (Hộ tịch, Quốc tịch, Nuôi con nuôi)
+ - notification_group (Thông báo cá nhân hóa)
+ - notifications_english
+ - podcasts (Quản lý Radio)
+ - quan_ly_khao_sat (Quản lý khảo sát)
+ - reflecting_policy (Phản ánh chính sách)
+ - shared_categories (Chuyên mục)
+ - system_administration (Quản trị hệ thống)
+ - tong_ra_soat (Tổng rà soát)
+ - user_favorites
+ - user_manual
+ - violation_reports (Báo cáo vi phạm)
+
+Group [system_administration]:
+ - Quan_ly_thong_tin_ca_nhan_hoa
+ - Thong_Tin_Nguoi_Dung (Quản lý User)
+ - additional_information (Thông tin người dùng)
+ - discussion_event_process_status
+ - statistics (Số liệu phân tích thống kê)
+ - system_field (Dữ liệu hệ thống)
+ - user_login_logs
+ - websites (Quản trị website)
+
+Group [legal_document_manager]:
+ - applicable_subjects_legal_documents
+ - document_group
+ - effect_status
+ - legal_document_field
+ - legal_document_files
+ - legal_document_type
+ - legal_documents (Legal Document System)
+ - organization
+ - signer
+
+Group [surveys]:
+ - audience_users
+ - audiences (Đối tượng tham gia khảo sát)
+ - survey_permissions (Quyền khảo sát)
+
+Group [ho_tro_phap_ly]:
+ - business_information (Thông tin doanh nghiệp)
+ - business_legal_contract (Soạn thảo hợp đồng)
+ - business_legal_qa (Hỏi đáp doanh nghiệp)
+ - lectures_online (Bài giảng trực tuyến)
+
+Group [filter_list]:
+ - business_legal_qa_answer_topic
+ - da_document_type
+ - da_handbook_content_group_id
+ - da_organizations
+ - draft_documents_draft_type
+
+Group [elements]:
+ - button
+ - filter
+ - forms
+ - media
+ - navigations
+ - sections
+
+Group [documents_contracts]:
+ - categories_document_contracts
+
+Group [frequently_asked_questions]:
+ - categories_frequently_asked_questions
+
+Group [legal_faq]:
+ - categories_legal_faq
+
+Group [system_field]:
+ - collection_fields
+ - collection_list
+
+Group [Content_Management]:
+ - comment
+ - content_articles (Quản lý tin tức)
+ - content_categories (Quản lý danh mục)
+ - content_tags (Quản lý Tags)
+ - content_topic (Quản lý chủ đề)
+ - organizations (Quản lý cơ quan)
+
+Group [comment]:
+ - comments (Bình luận tin tức)
+
+Group [Quan_ly_thong_tin_ca_nhan_hoa]:
+ - config_canhanhhoa (người dùng thiết lập lĩnh vực quan tâm)
+ - events (Sự kiện)
+
+Group [delegation_and_authorization]:
+ - da_articles (Tin tức PCPQ)
+ - da_circular (Thông tư và hướng dẫn)
+ - da_decree (Nghị định)
+ - da_handbook (Cẩm nang về công tác tư pháp địa phương)
+ - da_hotline (Đường dây nóng)
+ - da_qa_local (Hỏi đáp công tác tư pháp địa phương)
+
+Group [discussion_event_folder]:
+ - discussion_event (Tọa đàm / Sự kiện)
+ - discussion_event_type
+ - process_status
+
+Group [draft_legislation]:
+ - document_type_draft_legislation
+ - issuing_authority_draft_legislation
+
+Group [websites]:
+ - domains (Tên miền)
+ - pages (Pages)
+ - sitemap (Sơ đồ trang)
+
+Group [draft_document_manager]:
+ - draft_documents (Danh sách văn bản)
+ - draft_feedback_documents (Danh sách góp ý)
+
+Group [pages]:
+ - elements (Thành phần)
+
+Group [legal_aid_providers]:
+ - field_law_legal_aid_providers
+ - location_legal_aid_providers
+ - type_legal_aid_providers
+
+Group [forms]:
+ - form_submissions
+
+Group [Dien_dan_chinh_sach_phap_luat]:
+ - forum_comments (Bình luận)
+ - forum_history (Lịch sử hoạt động)
+ - forum_permissions (Phân quyền)
+ - forum_rebuttals (Bài phản biện)
+ - forum_registrations (Người dùng đăng kí tham gia diễn đàn)
+ - forum_tags (Tags)
+ - forum_threads (Bài thảo luận)
+ - forum_topics (Chủ đề)
+ - forum_user_blocks (Khóa người dùng)
+ - forum_violations (Báo cáo vi phạm)
+ - user_topic_follows (Người dùng theo dõi diễn đàn)
+
+Group [tong_ra_soat]:
+ - gr_ban_chi_dao (Ban chỉ đạo)
+ - gr_members (người tham gia)
+ - gr_news (Tin tức)
+
+Group [ho_dap_tu_van_phap_luat]:
+ - law_expert (Chuyên gia tư vấn)
+ - law_expert_timeline (Thời gian tư vấn)
+ - law_field (Lĩnh vực)
+ - law_organizations (Cơ quan)
+ - law_qa_answer (Câu hỏi)
+ - law_qa_comments (Bình luận)
+ - law_qa_topic (Chủ đề)
+ - law_sche_consultation (Đặt lịch tư vấn)
+
+Group [Nghi_quyet_66]:
+ - leaders (Ban chỉ đạo)
+
+Group [notification_group]:
+ - nl_portal_notifications (Thông báo trên cổng)
+ - nl_user_noti_stg_content_topic
+ - nl_user_notification_settings
+ - notifications (Thông báo gốc)
+ - user_notification_settings (Cấu hình thông báo cá nhân)
+ - user_notification_domain_prefs (Lĩnh vực quan tâm (thông báo))
+ - legal_domains (Lĩnh vực pháp lý)
+ - newsletter_subscriptions (Đăng ký bản tin)
+
+Group [user_manual]:
+ - operations
+ - topics
+
+Group [legal_support]:
+ - provider_legal_support
+
+Group [reflecting_policy]:
+ - recommendation (Quản lý kiến nghị)
+
+Group [legal_compliance_guide]:
+ - sector_legal_compliance_guide
+
+Group [notifications_english]:
+ - subscribes_notifications_english
+
+Group [quan_ly_khao_sat]:
+ - survey_answers
+ - survey_question_options (Phương án trả lời câu hỏi khảo sát)
+ - survey_questions (Câu hỏi khảo sát)
+ - survey_steps
+ - survey_topics (Chủ đề Khảo sát)
+ - surveys
+
+Group [survey_answers]:
+ - survey_responses (Trả lời khảo sát)
+
+Group [Thong_Tin_Nguoi_Dung]:
+ - user_certificates (Link chứng chỉ người dùng)
+ - user_notifications (Thông báo người dùng)
+ - user_social_links (Link mxh người dùng)

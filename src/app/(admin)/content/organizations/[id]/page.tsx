@@ -255,7 +255,7 @@ export default function OrganizationDetailPage() {
                            <span className="text-xs text-gray-500">2 giờ trước</span>
                         </div>
                         <div className="text-sm text-gray-600 mt-1">
-                           Đã cập nhật <span className="font-semibold bg-gray-100 px-1 rounded">status</span> từ <strike className="text-red-400 ml-1">inactive</strike> thành <span className="text-green-600 font-medium">active</span>
+                           Đã cập nhật <span className="font-semibold bg-gray-100 px-1 rounded">status</span> từ <del className="text-red-400 ml-1">inactive</del> thành <span className="text-green-600 font-medium">active</span>
                         </div>
                         <button className="flex items-center gap-1 text-[11px] font-semibold text-blue-600 bg-blue-50 hover:bg-blue-100 px-2 py-1 rounded w-fit mt-2 transition-colors">
                            <RotateCcw size={12} /> Khôi phục

@@ -1,0 +1,7 @@
+﻿src/app/(admin)/collections/[collectionId]/create/page.tsx(139,104): error TS2322: Type '{ size: number; className: string; title: string; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'title' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+src/app/(admin)/collections/[collectionId]/create/page.tsx(140,110): error TS2322: Type '{ size: number; className: string; title: string; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'title' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+src/app/(admin)/collections/[collectionId]/page.tsx(400,52): error TS2304: Cannot find name 'Layers'.
+src/app/(admin)/content/organizations/[id]/page.tsx(258,114): error TS2339: Property 'strike' does not exist on type 'JSX.IntrinsicElements'.
+src/app/(admin)/content/organizations/[id]/page.tsx(258,160): error TS2339: Property 'strike' does not exist on type 'JSX.IntrinsicElements'.
