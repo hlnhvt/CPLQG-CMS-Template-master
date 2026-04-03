@@ -52,26 +52,75 @@ export default function GenericCollectionDetailPage() {
 
   const [activeTab, setActiveTab] = useState<string>(tabGroups.length > 0 ? tabGroups[0].field : '');
 
+  // Helper sinh giá trị mock phù hợp với tên cột
+  const getMockCellValue = (colPath: string, rowIdx: number): string => {
+    const col = colPath.split('.').pop()?.toLowerCase() || colPath.toLowerCase();
+    const idx = rowIdx + 1;
+    if (col === 'id') return String(1000 + idx);
+    
+    // Relation fields
+    if (col.endsWith('_id')) {
+        if(col.includes('role')) return ['Quản trị viên', 'Biên tập viên', 'Cộng tác viên'][rowIdx % 3];
+        if(col.includes('user')) return `Nguyen Van ${['A', 'B', 'C'][rowIdx % 3]}`;
+        if(col.includes('org')) return 'Bộ Tư pháp';
+        if(col.includes('profile')) return ['Nguyễn Văn An', 'Trần Thị Bình', 'Lê Hoàng Nam'][rowIdx % 3];
+        return `Bản ghi liên kết #${idx}`;
+    }
+
+    if (col.includes('email')) return `user${idx}@moj.gov.vn`;
+    if (col.includes('phone') || col.includes('sdt') || col.includes('dien_thoai')) return `098800000${idx}`;
+    if (col === 'status' || col === 'trang_thai' || col === 'cooperation_status') return idx === 1 ? 'active' : idx === 2 ? 'pending' : 'inactive';
+    if (col.includes('date') || col.includes('ngay') || col.includes('time') || col.includes('timestamp')) return `2026-04-0${idx} 0${idx + 8}:00`;
+    if (col === 'type' || col === 'loai' || col.includes('_type')) return ['Text', 'Textarea', 'Hidden'][rowIdx % 3];
+    if (col.includes('value') || col === 'gia_tri') return `Giá trị mẫu №${idx}`;
+    
+    // SMART UC502-511 fields
+    if (col.includes('topic_code')) return `CD_${100+idx}`;
+    if (col.includes('topic_name')) return ['Phổ biến pháp luật', 'Hỗ trợ Tư pháp', 'Tra cứu Luật'][rowIdx % 3];
+    if (col.includes('rule_name')) return ['Duyệt tin tức', 'Duyệt hồ sơ luật sư', 'Công khai văn bản'][rowIdx % 3];
+    if (col.includes('rule_code')) return `DT_${100+idx}`;
+    if (col.includes('function_name')) return ['Thêm bài viết', 'Sửa hồ sơ', 'Phân quyền Menu'][rowIdx % 3];
+    if (col.includes('function_code')) return `FUNC_${100+idx}`;
+    if (col.includes('citizen_id')) return `00109000010${idx}`;
+    if (col.includes('address')) return `${10+idx} Tôn Thất Thuyết, Cầu Giấy, Hà Nội`;
+    if (col.includes('expertise')) return ['Hộ tịch', 'Lao động', 'Doanh nghiệp'][rowIdx % 3];
+    if (col.includes('work_scope')) return 'Hỗ trợ tư vấn pháp lý trực tuyến khu vực miền Bắc.';
+    if (col.includes('position')) return ['Chuyên viên', 'Trưởng phòng', 'Phó Cục trưởng'][rowIdx % 3];
+    if (col.includes('staff_card')) return `CB-2024-${idx}`;
+
+    if (col === 'name' || col === 'ten' || col === 'ho_ten' || col.includes('title') || col.includes('tieu_de') || col.includes('full_name')) {
+      return ['Nguyễn Văn An', 'Trần Thị Bình', 'Lê Hoàng Nam'][rowIdx % 3];
+    }
+    if (col === 'label' || col.includes('nhan') || col.includes('caption')) return `Mục ${idx}`;
+    if (col.includes('file') || col.includes('anh') || col.includes('image') || col.includes('avatar')) return `file_${idx}.pdf`;
+    if (col.includes('sort') || col.includes('thu_tu') || col.includes('order')) return String(idx * 10);
+    if (col.includes('url') || col.includes('link') || col.includes('slug')) return `/duong-dan-${idx}`;
+    if (col.includes('note') || col.includes('ghi_chu') || col.includes('mo_ta') || col.includes('description') || col.includes('desc')) return `Ghi chú mô tả số ${idx}`;
+    if (col.includes('content') || col.includes('noi_dung')) return `Nội dung mẫu ${idx}`;
+    return `Dữ liệu ${idx}`;
+  };
+
   // MOCK DATA READING DỰA TRÊN SCHEMA
   const mockData: any = { id };
   fields.forEach(s => {
       if(s.field === 'id') return;
-      if(s.field === 'status') {
-          mockData[s.field] = 'published';
+      const fieldLower = s.field.toLowerCase();
+      if(s.field === 'status' || fieldLower === 'cooperation_status') {
+          mockData[s.field] = collectionId === 'topics' ? 'published' : 'active';
       } else if(s.type === 'boolean') {
           mockData[s.field] = true;
       } else if (s.interface === 'select-dropdown' && s.options?.choices) {
           mockData[s.field] = s.options.choices[0].value;
       } else if (s.type === 'integer' || s.type === 'float') {
           mockData[s.field] = 42;
-      } else if (s.type === 'timestamp' || s.type === 'dateTime') {
+      } else if (s.type === 'timestamp' || s.type === 'dateTime' || fieldLower.includes('date')) {
           mockData[s.field] = `2026-04-03 10:00:00`;
       } else if (s.relation) {
           mockData[s.field] = `1`; // foreign key mock
       } else if (s.interface === 'publish-button') {
           mockData[s.field] = null;
       } else {
-          mockData[s.field] = `Dữ liệu chi tiết mẫu của ${s.field}`;
+          mockData[s.field] = getMockCellValue(s.field, 0);
       }
   });
 
@@ -132,28 +181,7 @@ export default function GenericCollectionDetailPage() {
     );
   };
 
-  // Helper sinh giá trị mock phù hợp với tên cột
-  const getMockCellValue = (colPath: string, rowIdx: number): string => {
-    const col = colPath.split('.').pop()?.toLowerCase() || colPath.toLowerCase();
-    const idx = rowIdx + 1;
-    if (col === 'id' || col.endsWith('_id')) return String(1000 + idx);
-    if (col.includes('email')) return `user${idx}@example.vn`;
-    if (col.includes('phone') || col.includes('sdt') || col.includes('dien_thoai')) return `098${idx}000${idx}00`;
-    if (col === 'status' || col === 'trang_thai') return idx === 1 ? 'published' : idx === 2 ? 'draft' : 'archived';
-    if (col.includes('date') || col.includes('ngay') || col.includes('time') || col.includes('timestamp')) return `2026-04-0${idx} 0${idx + 8}:00`;
-    if (col === 'type' || col === 'loai' || col.includes('_type')) return ['Text', 'Textarea', 'Hidden'][rowIdx % 3];
-    if (col.includes('value') || col === 'gia_tri') return `Giá trị mẫu №${idx}`;
-    if (col === 'name' || col === 'ten' || col === 'ho_ten' || col.includes('title') || col.includes('tieu_de')) {
-      return ['Nguyễn Văn An', 'Trần Thị Bình', 'Lê Hoàng Nam'][rowIdx % 3];
-    }
-    if (col === 'label' || col.includes('nhan') || col.includes('caption')) return `Mục ${idx}`;
-    if (col.includes('file') || col.includes('anh') || col.includes('image') || col.includes('avatar')) return `file_${idx}.pdf`;
-    if (col.includes('sort') || col.includes('thu_tu') || col.includes('order')) return String(idx * 10);
-    if (col.includes('url') || col.includes('link') || col.includes('slug')) return `/duong-dan-${idx}`;
-    if (col.includes('note') || col.includes('ghi_chu') || col.includes('mo_ta') || col.includes('description')) return `Ghi chú mẫu ${idx}`;
-    if (col.includes('content') || col.includes('noi_dung')) return `Nội dung mẫu ${idx}`;
-    return `Dữ liệu ${idx}`;
-  };
+// helper đã được lift lên trên
 
   // ---- Render Relation List readonly (list-m2a, list-m2m, list-o2m) ----
   const renderRelationList = (f: any) => {

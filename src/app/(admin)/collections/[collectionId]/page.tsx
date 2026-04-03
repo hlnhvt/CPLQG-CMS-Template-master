@@ -171,20 +171,47 @@ export default function GenericCollectionListPage() {
          if(!c.schema) { row[c.id] = '--'; return; }
          
          const s = c.schema as any;
-         if(s.field === 'status') {
-             row[c.id] = idx === 0 ? 'published' : 'draft';
+         const fieldLower = s.field.toLowerCase();
+         const i = idx + 1;
+
+         if(s.field === 'status' || fieldLower === 'cooperation_status') {
+             row[c.id] = idx === 0 ? 'active' : (idx === 1 ? 'pending' : 'inactive');
+             if(collectionId === 'topics') row[c.id] = idx === 0 ? 'published' : 'draft';
          } else if(s.type === 'boolean') {
              row[c.id] = idx % 2 === 0;
          } else if (s.interface === 'select-dropdown' && s.options?.choices) {
-             row[c.id] = s.options.choices[idx % s.options.choices.length].value;
+             row[c.id] = s.options.choices[idx % s.options.choices.length].text || s.options.choices[idx % s.options.choices.length].value;
          } else if (s.type === 'integer' || s.type === 'float') {
              row[c.id] = Math.floor(Math.random() * 100);
-         } else if (s.type === 'timestamp' || s.type === 'dateTime') {
-             row[c.id] = `2026-04-0${idx+1} 10:00:00`;
-         } else if (s.relation) {
-             row[c.id] = `Item ${idx+1} [${s.relation.related_collection}]`;
+         } else if (s.type === 'timestamp' || s.type === 'dateTime' || fieldLower.includes('date')) {
+             row[c.id] = `2026-04-0${i} 10:00:00`;
+         } else if (s.relation || fieldLower.endsWith('_id')) {
+             const relatedName = s.relation ? s.relation.related_collection : '';
+             if(relatedName === 'organizations' || fieldLower.includes('org')) row[c.id] = `Bộ Tư pháp`;
+             else if(relatedName === 'directus_users' || fieldLower === 'user_id') row[c.id] = `Nguyen Van ${['A', 'B', 'C'][idx]}`;
+             else if(relatedName === 'directus_roles' || fieldLower === 'role_id') row[c.id] = ['Quản trị viên', 'Biên tập viên', 'Cộng tác viên'][idx];
+             else if(relatedName === 'additional_information' || fieldLower === 'portal_user_id') row[c.id] = `Tài khoản Cổng ${['A', 'B', 'C'][idx]}`;
+             else if(fieldLower.includes('profile')) row[c.id] = ['Nguyễn Văn An', 'Trần Thị Bình', 'Lê Hoàng Nam'][idx];
+             else row[c.id] = `Bản ghi liên kết #${i}`;
          } else {
-             row[c.id] = `Dữ liệu mẫu ${s.field} ${idx+1}`;
+             // SMART STRING GENERATION MOCK BASED ON FIELD NAME
+             if (fieldLower.includes('email')) row[c.id] = `user${i}@moj.gov.vn`;
+             else if (fieldLower.includes('phone') || fieldLower.includes('sdt')) row[c.id] = `098800000${i}`;
+             else if (fieldLower.includes('topic_code')) row[c.id] = `CD_${100+i}`;
+             else if (fieldLower.includes('topic_name')) row[c.id] = ['Chủ đề Phổ biến pháp luật', 'Hỗ trợ Tư pháp', 'Tra cứu Luật'][idx];
+             else if (fieldLower.includes('rule_name')) row[c.id] = ['Duyệt tin tức', 'Duyệt hồ sơ luật sư', 'Công khai văn bản'][idx];
+             else if (fieldLower.includes('rule_code')) row[c.id] = `DT_${100+i}`;
+             else if (fieldLower.includes('function_name')) row[c.id] = ['Thêm bài viết', 'Sửa hồ sơ', 'Phân quyền Menu'][idx];
+             else if (fieldLower.includes('function_code')) row[c.id] = `FUNC_${100+i}`;
+             else if (fieldLower.includes('full_name') || fieldLower.includes('name')) row[c.id] = ['Nguyễn Văn An', 'Trần Thị Bình', 'Lê Hoàng Nam'][idx];
+             else if (fieldLower.includes('citizen_id')) row[c.id] = `00109000010${i}`;
+             else if (fieldLower.includes('address')) row[c.id] = `${10+i} Tôn Thất Thuyết, Cầu Giấy, Hà Nội`;
+             else if (fieldLower.includes('expertise')) row[c.id] = ['Hộ tịch', 'Lao động', 'Doanh nghiệp'][idx];
+             else if (fieldLower.includes('work_scope')) row[c.id] = 'Hỗ trợ tư vấn pháp lý trực tuyến khu vực miền Bắc.';
+             else if (fieldLower.includes('position')) row[c.id] = ['Chuyên viên', 'Trưởng phòng', 'Phó Cục trưởng'][idx];
+             else if (fieldLower.includes('staff_card')) row[c.id] = `CB-2024-${i}`;
+             else if (fieldLower.includes('note') || fieldLower.includes('desc')) row[c.id] = `Ghi chú mô tả số ${i}...`;
+             else row[c.id] = `Dữ liệu mẫu ${i}`;
          }
      });
      return row;
