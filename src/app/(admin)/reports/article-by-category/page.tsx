@@ -1,7 +1,7 @@
 "use client";
 
 import { 
-  Search, ListFilter, Download, RefreshCw, Calendar, ChevronDown, BarChart2, Filter, Settings2, FileText, Check, ChevronLeft, ChevronRight, Bookmark, Printer
+  Search, ListFilter, Download, RefreshCw, Calendar, ChevronDown, BarChart2, Filter, Settings2, FileText, Check, ChevronLeft, ChevronRight, Bookmark, Printer, Activity
 } from "lucide-react";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
@@ -20,6 +20,15 @@ const baseCategories = [
 ];
 
 const ALL_CATEGORIES = [...baseCategories].sort((a, b) => a.localeCompare(b));
+
+const ORDERED_STATUSES = [
+  "Bản nháp", 
+  "Chờ phê duyệt", 
+  "Từ chối bài viết", 
+  "Chờ xuất bản", 
+  "Đã xuất bản", 
+  "Đã gỡ bài viết"
+];
 
 const MOCK_DATA = [
   { category: "Tin hoạt động", news: 320, video: 15, image: 45, audio: 1 },
@@ -42,10 +51,17 @@ export default function ArticleByCategoryReport() {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const categoryRef = useRef<HTMLDivElement>(null);
 
+  const [isStatusOpen, setIsStatusOpen] = useState(false);
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>([]);
+  const statusRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (categoryRef.current && !categoryRef.current.contains(event.target as Node)) {
         setIsCategoryOpen(false);
+      }
+      if (statusRef.current && !statusRef.current.contains(event.target as Node)) {
+        setIsStatusOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -60,7 +76,16 @@ export default function ArticleByCategoryReport() {
     }
   };
 
+  const toggleStatus = (status: string) => {
+    if (selectedStatuses.includes(status)) {
+      setSelectedStatuses(selectedStatuses.filter(s => s !== status));
+    } else {
+      setSelectedStatuses([...selectedStatuses, status]);
+    }
+  };
+
   const isAllSelected = selectedCategories.length === ALL_CATEGORIES.length || selectedCategories.length === 0;
+  const isAllStatusSelected = selectedStatuses.length === ORDERED_STATUSES.length || selectedStatuses.length === 0;
 
   // Caculate Totals
   const totalNews = MOCK_DATA.reduce((sum, item) => sum + item.news, 0);
@@ -96,9 +121,9 @@ export default function ArticleByCategoryReport() {
                    <h3 className="font-bold text-gray-800 text-[15px]">Bộ lọc dữ liệu</h3>
                 </div>
                 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
                     {/* Từ ngày */}
-                    <div className="flex flex-col gap-1.5">
+                    <div className="flex flex-col gap-1.5 md:col-span-1">
                         <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Từ ngày</label>
                         <div className="relative flex items-center w-full h-[38px] border border-gray-200 rounded-lg bg-white overflow-hidden focus-within:border-[#5340FF] focus-within:ring-1 focus-within:ring-[#5340FF] transition-all shadow-sm">
                             <div className="w-9 h-full flex items-center justify-center text-gray-400 shrink-0">
@@ -114,7 +139,7 @@ export default function ArticleByCategoryReport() {
                     </div>
 
                     {/* Đến ngày */}
-                    <div className="flex flex-col gap-1.5">
+                    <div className="flex flex-col gap-1.5 md:col-span-1">
                         <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Đến ngày</label>
                         <div className="relative flex items-center w-full h-[38px] border border-gray-200 rounded-lg bg-white overflow-hidden focus-within:border-[#5340FF] focus-within:ring-1 focus-within:ring-[#5340FF] transition-all shadow-sm">
                             <div className="w-9 h-full flex items-center justify-center text-gray-400 shrink-0">
@@ -168,6 +193,52 @@ export default function ArticleByCategoryReport() {
                                         {(selectedCategories.includes(cat) || isAllSelected) && <Check size={12} strokeWidth={3} className="text-white" />}
                                      </div>
                                      <span className="text-[13px] font-medium text-gray-700 select-none">{cat}</span>
+                                  </div>
+                                ))}
+                             </div>
+                          </div>
+                        )}
+                    </div>
+
+                    {/* Trạng thái (Multi-select) */}
+                    <div className="flex flex-col gap-1.5 relative md:col-span-1" ref={statusRef}>
+                        <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Trạng thái</label>
+                        <div 
+                          className="relative flex items-center justify-between w-full h-[38px] border border-gray-200 rounded-lg bg-white px-3 cursor-pointer hover:border-gray-300 transition-all shadow-sm"
+                          onClick={() => setIsStatusOpen(!isStatusOpen)}
+                        >
+                            <div className="flex items-center gap-2 overflow-hidden w-full pr-4">
+                               <Activity size={15} className="text-gray-400 shrink-0" />
+                               <span className="text-sm font-medium text-gray-700 truncate select-none">
+                                  {isAllStatusSelected ? "Tất cả trạng thái" : `Đã chọn ${selectedStatuses.length} trạng thái`}
+                               </span>
+                            </div>
+                            <ChevronDown size={16} className="text-gray-400 shrink-0" />
+                        </div>
+
+                        {isStatusOpen && (
+                          <div className="absolute top-[70px] left-0 w-full bg-white border border-gray-200 rounded-xl shadow-xl z-50 overflow-hidden flex flex-col py-2 max-h-[300px] animate-in fade-in slide-in-from-top-2">
+                             <div className="px-3 pb-2 border-b border-gray-100">
+                                <button 
+                                  className="text-xs font-semibold text-[#5340FF] hover:underline"
+                                  onClick={() => setSelectedStatuses([])}
+                                >
+                                  Khôi phục chọn tất cả
+                                </button>
+                             </div>
+                             <div className="overflow-y-auto p-2 custom-scrollbar flex flex-col gap-1">
+                                {ORDERED_STATUSES.map(status => (
+                                  <div 
+                                    key={status}
+                                    className="flex items-center gap-3 px-3 py-2 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors group"
+                                    onClick={() => toggleStatus(status)}
+                                  >
+                                     <div className={cn("w-4 h-4 border-2 rounded flex items-center justify-center transition-colors shrink-0", 
+                                        selectedStatuses.includes(status) || isAllStatusSelected ? "bg-[#5340FF] border-[#5340FF]" : "border-gray-300 group-hover:border-[#5340FF]"
+                                     )}>
+                                        {(selectedStatuses.includes(status) || isAllStatusSelected) && <Check size={12} strokeWidth={3} className="text-white" />}
+                                     </div>
+                                     <span className="text-[13px] font-medium text-gray-700 select-none">{status}</span>
                                   </div>
                                 ))}
                              </div>
