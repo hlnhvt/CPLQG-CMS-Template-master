@@ -23,7 +23,8 @@ const ICON_MAP: Record<string, any> = {
 export default function AdminSidebar() {
   const pathname = usePathname() || "";
   const isSettings = pathname.includes('/settings');
-  const isContent = pathname.includes('/content') || pathname.includes('/collections') || pathname === '/(admin)';
+  const isReports = pathname.includes('/reports');
+  const isContent = !isSettings && !isReports && (pathname.includes('/content') || pathname.includes('/collections') || pathname === '/' || pathname === '/(admin)');
 
   const [openGroups, setOpenGroups] = useState<string[]>(["Content_Management"]);
 
@@ -43,7 +44,7 @@ export default function AdminSidebar() {
           <NavIcon icon={Box} href="/collections/content_articles" active={isContent} />
           <NavIcon icon={Users} href="#" />
           <NavIcon icon={Folder} href="#" />
-          <NavIcon icon={TrendingUp} href="#" />
+          <NavIcon icon={TrendingUp} href="/reports/article-by-category" active={isReports} />
           <NavIcon icon={Settings} href="/settings/data-model" active={isSettings} />
           <NavIcon icon={HelpCircle} href="#" />
         </div>
@@ -85,6 +86,14 @@ export default function AdminSidebar() {
               
               <SidebarItem icon={AlertCircle} label="Báo Cáo Lỗi" href="#" />
               <SidebarItem icon={MessageSquare} label="Yêu cầu tính năng" href="#" />
+            </>
+          )}
+
+          {isReports && (
+            <>
+              <SidebarItem icon={BarChart} label="Theo chuyên mục" href="/reports/article-by-category" active={pathname === '/reports/article-by-category'} />
+              <SidebarItem icon={Users} label="Theo người biên tập" href="/reports/article-by-contributor" active={pathname === '/reports/article-by-contributor'} />
+              <SidebarItem icon={ListFilter} label="Theo trạng thái" href="/reports/article-by-status" active={pathname === '/reports/article-by-status'} />
             </>
           )}
 
