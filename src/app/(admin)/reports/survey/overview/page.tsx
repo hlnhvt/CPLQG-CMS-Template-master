@@ -76,13 +76,13 @@ export default function SurveyOverviewReport() {
           <button className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-[#5340FF] hover:bg-blue-100 transition-colors border border-blue-100 shadow-sm transition-transform active:scale-95">
             <FlaskConical size={20} strokeWidth={2.5} />
           </button>
-          <button 
+          <button
             onClick={handleDownload}
             className="w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-[#5340FF] hover:bg-blue-100 transition-colors border border-blue-100 shadow-sm transition-transform active:scale-95"
           >
             <Download size={20} strokeWidth={2.5} />
           </button>
-          <button 
+          <button
             onClick={handleReload}
             className={cn(
               "w-10 h-10 rounded-full bg-blue-50 flex items-center justify-center text-[#5340FF] hover:bg-blue-100 transition-colors border border-blue-100 shadow-sm transition-transform active:scale-95",
@@ -98,10 +98,10 @@ export default function SurveyOverviewReport() {
       <div className="flex-1 overflow-y-auto w-full flex justify-start p-6 pt-0 custom-scrollbar relative print:overflow-visible print:px-0 print:p-0">
         {isReloading && (
           <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] z-[100] flex items-center justify-center animate-in fade-in duration-300 print:hidden">
-             <div className="flex flex-col items-center gap-3">
-                <div className="w-12 h-12 border-4 border-[#5340FF]/20 border-t-[#5340FF] rounded-full animate-spin"></div>
-                <span className="text-sm font-bold text-[#5340FF] animate-pulse">Đang cập nhật dữ liệu...</span>
-             </div>
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-12 h-12 border-4 border-[#5340FF]/20 border-t-[#5340FF] rounded-full animate-spin"></div>
+              <span className="text-sm font-bold text-[#5340FF] animate-pulse">Đang cập nhật dữ liệu...</span>
+            </div>
           </div>
         )}
         <div className="w-full max-w-none flex flex-col gap-6 mt-4">
@@ -112,19 +112,23 @@ export default function SurveyOverviewReport() {
               className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 flex items-center justify-between cursor-pointer hover:border-gray-300 transition-all shadow-sm print:border-none print:shadow-none print:p-0 print:bg-transparent"
               onClick={() => setIsSurveyOpen(!isSurveyOpen)}
             >
-              <span className="text-[15px] font-bold text-gray-700 font-sans tracking-tight">[Demo] Khảo sát Cổng Thông Tin Quốc Gia</span>
+              <span className="text-[15px] text-gray-700 font-sans tracking-tight">[Demo] Khảo sát Cổng Thông Tin Quốc Gia</span>
               <ChevronDown size={20} className="text-gray-400 print:hidden" />
             </div>
             {isSurveyOpen && (
               <div className="absolute top-full left-0 w-full mt-2 bg-white border border-gray-200 rounded-xl shadow-xl z-50 py-2 print:hidden">
-                <div className="px-4 py-2 hover:bg-gray-50 cursor-pointer font-bold text-gray-700">[Demo] Khảo sát Cổng Thông Tin Quốc Gia</div>
+                <div className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-gray-700">[Demo] Khảo sát Cổng Thông Tin Quốc Gia</div>
                 <div className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-gray-600">Khảo sát mức độ hài lòng về dịch vụ công 2026</div>
               </div>
             )}
           </div>
 
           {/* Filter Section */}
-          <div className="bg-[#eff3f8] p-4 rounded-2xl flex flex-col md:flex-row items-end gap-6 print:hidden">
+          <div className="bg-[#eff3f8] p-4 rounded-2xl flex flex-col md:flex-row items-center gap-6 print:hidden">
+            <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-gray-400 shrink-0 shadow-sm">
+              <Calendar size={18} />
+            </div>
+
             <div className="flex flex-col gap-1.5 w-full md:w-[200px]">
               <label className="text-[11px] font-bold text-gray-400 uppercase pl-1">Từ ngày:</label>
               <div className="relative flex items-center w-full h-[40px] border border-gray-100 rounded-xl bg-white px-3 shadow-sm overflow-hidden">
@@ -134,9 +138,9 @@ export default function SurveyOverviewReport() {
                   onChange={(e) => setFromDate(e.target.value)}
                   className="flex-1 h-full outline-none bg-transparent text-[13px] text-gray-700"
                 />
-                <Calendar size={14} className="text-gray-400 pointer-events-none" />
               </div>
             </div>
+
             <div className="flex flex-col gap-1.5 w-full md:w-[200px]">
               <label className="text-[11px] font-bold text-gray-400 uppercase pl-1">Đến ngày:</label>
               <div className="relative flex items-center w-full h-[40px] border border-gray-100 rounded-xl bg-white px-3 shadow-sm overflow-hidden">
@@ -146,7 +150,6 @@ export default function SurveyOverviewReport() {
                   onChange={(e) => setToDate(e.target.value)}
                   className="flex-1 h-full outline-none bg-transparent text-[13px] text-gray-700"
                 />
-                <Calendar size={14} className="text-gray-400 pointer-events-none" />
               </div>
             </div>
           </div>

@@ -27,7 +27,7 @@ export default function AdminSidebar() {
   const isReports = pathname.includes('/reports');
   const isContent = !isSettings && !isReports && (pathname.includes('/content') || pathname.includes('/collections') || pathname === '/' || pathname === '/(admin)');
 
-  const [openGroups, setOpenGroups] = useState<string[]>(["Content_Management"]);
+  const [openGroups, setOpenGroups] = useState<string[]>(["Content_Management", "Survey_Management"]);
 
   const toggleGroup = (id: string) => {
     setOpenGroups(prev => prev.includes(id) ? prev.filter(g => g !== id) : [...prev, id]);
@@ -104,7 +104,7 @@ export default function AdminSidebar() {
                 <SidebarItem icon={MapPin} label="Địa phương" href="/reports/survey/location" active={pathname === '/reports/survey/location'} indent />
                 <SidebarItem icon={Users} label="Loại người dùng" href="/reports/survey/user-type" active={pathname === '/reports/survey/user-type'} indent />
                 <SidebarItem icon={BarChart2} label="Thống kê câu hỏi" href="/reports/survey/questions" active={pathname === '/reports/survey/questions'} indent />
-                <SidebarItem icon={MessageSquare} label="Câu hỏi mở" href="/reports/survey/open-ended" active={pathname === '/reports/survey/open-ended'} indent />
+                <SidebarItem icon={MessageSquare} label="Câu hỏi mở" href="/reports/survey/open-questions" active={pathname === '/reports/survey/open-questions'} indent />
                 <SidebarItem icon={LineChart} label="Phân tích câu hỏi" href="/reports/survey/analysis" active={pathname === '/reports/survey/analysis'} indent />
                 <SidebarItem icon={UserX} label="Bỏ giữa chừng" href="/reports/survey/drop-off" active={pathname === '/reports/survey/drop-off'} indent />
                 <SidebarItem icon={Timer} label="Thời gian hoàn thành" href="/reports/survey/completion-time" active={pathname === '/reports/survey/completion-time'} indent />
