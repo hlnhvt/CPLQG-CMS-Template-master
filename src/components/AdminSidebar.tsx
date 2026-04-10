@@ -8,7 +8,8 @@ import {
   Bell, User, ChevronRight, Search, Plus, Save, DownloadCloud,
   Layers, Lock, Sliders, Bookmark, Globe, Sparkles, ShoppingBag,
   Puzzle, AlertCircle, MessageSquare, LayoutTemplate, FileText, Hash, Megaphone,
-  Radio, BarChart, Database, ListFilter
+  Radio, BarChart, Database, ListFilter, ClipboardList, PieChart, Clock, MapPin,
+  BarChart2, LineChart, UserX, Timer, Hourglass, Smartphone, Activity
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MENU_GROUPS } from "@/lib/menu-data";
@@ -33,7 +34,7 @@ export default function AdminSidebar() {
   };
 
   return (
-    <div className="flex h-screen w-[320px] shrink-0 border-r border-gray-200">
+    <div className="flex h-screen w-[320px] shrink-0 border-r border-gray-200 print:hidden">
       {/* Primary Sidebar (Narrow) */}
       <div className="flex flex-col w-[60px] bg-[#1a2332] text-white shrink-0 justify-between items-center py-4">
         <div className="flex flex-col gap-4 items-center">
@@ -94,6 +95,23 @@ export default function AdminSidebar() {
               <SidebarItem icon={BarChart} label="Theo chuyên mục" href="/reports/article-by-category" active={pathname === '/reports/article-by-category'} />
               <SidebarItem icon={Users} label="Theo người biên tập" href="/reports/article-by-contributor" active={pathname === '/reports/article-by-contributor'} />
               <SidebarItem icon={ListFilter} label="Theo trạng thái" href="/reports/article-by-status" active={pathname === '/reports/article-by-status'} />
+              
+              <div className="my-2 border-t border-gray-200"></div>
+              
+              <SidebarGroup icon={ClipboardList} label="Quản Lý Khảo Sát" expanded={openGroups.includes('Survey_Management')} onClick={() => toggleGroup('Survey_Management')}>
+                <SidebarItem icon={PieChart} label="Tổng quan" href="/reports/survey/overview" active={pathname === '/reports/survey/overview'} indent />
+                <SidebarItem icon={Clock} label="Theo thời gian" href="/reports/survey/time" active={pathname === '/reports/survey/time'} indent />
+                <SidebarItem icon={MapPin} label="Địa phương" href="/reports/survey/location" active={pathname === '/reports/survey/location'} indent />
+                <SidebarItem icon={Users} label="Loại người dùng" href="/reports/survey/user-type" active={pathname === '/reports/survey/user-type'} indent />
+                <SidebarItem icon={BarChart2} label="Thống kê câu hỏi" href="/reports/survey/questions" active={pathname === '/reports/survey/questions'} indent />
+                <SidebarItem icon={MessageSquare} label="Câu hỏi mở" href="/reports/survey/open-ended" active={pathname === '/reports/survey/open-ended'} indent />
+                <SidebarItem icon={LineChart} label="Phân tích câu hỏi" href="/reports/survey/analysis" active={pathname === '/reports/survey/analysis'} indent />
+                <SidebarItem icon={UserX} label="Bỏ giữa chừng" href="/reports/survey/drop-off" active={pathname === '/reports/survey/drop-off'} indent />
+                <SidebarItem icon={Timer} label="Thời gian hoàn thành" href="/reports/survey/completion-time" active={pathname === '/reports/survey/completion-time'} indent />
+                <SidebarItem icon={Hourglass} label="Thời gian trả lời câu hỏi" href="/reports/survey/question-time" active={pathname === '/reports/survey/question-time'} indent />
+                <SidebarItem icon={Smartphone} label="Thiết bị" href="/reports/survey/devices" active={pathname === '/reports/survey/devices'} indent />
+                <SidebarItem icon={Activity} label="Hành vi" href="/reports/survey/behavior" active={pathname === '/reports/survey/behavior'} indent />
+              </SidebarGroup>
             </>
           )}
 

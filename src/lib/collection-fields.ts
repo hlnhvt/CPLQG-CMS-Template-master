@@ -43075,17 +43075,97 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
   ],
   "collaborator_profiles": [
     {
-      "field": "full_name",
-      "type": "string",
-      "interface": "input",
+      "field": "tab_personal",
+      "type": "alias",
+      "interface": "group-tabs",
       "options": null,
-      "label": "Họ và tên",
+      "label": "Thông tin cá nhân",
       "note": "",
       "required": false,
       "readonly": false,
       "hidden": false,
       "system": false,
       "group": null,
+      "width": "full",
+      "sort": 5,
+      "relation": null
+    },
+    {
+      "field": "tab_expertise",
+      "type": "alias",
+      "interface": "group-tabs",
+      "options": null,
+      "label": "Chuyên môn",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 6,
+      "relation": null
+    },
+    {
+      "field": "tab_contract",
+      "type": "alias",
+      "interface": "group-tabs",
+      "options": null,
+      "label": "Hợp đồng & Hợp tác",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 7,
+      "relation": null
+    },
+    {
+      "field": "tab_portal",
+      "type": "alias",
+      "interface": "group-tabs",
+      "options": null,
+      "label": "Tài khoản Cổng",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 8,
+      "relation": null
+    },
+    {
+      "field": "tab_files",
+      "type": "alias",
+      "interface": "group-tabs",
+      "options": null,
+      "label": "Tài liệu đính kèm",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 9,
+      "relation": null
+    },
+    {
+      "field": "full_name",
+      "type": "string",
+      "interface": "input",
+      "options": null,
+      "label": "Họ và tên",
+      "note": "",
+      "required": true,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "tab_personal",
       "width": "half",
       "sort": 1,
       "relation": null
@@ -43101,7 +43181,7 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_personal",
       "width": "half",
       "sort": 2,
       "relation": null
@@ -43117,7 +43197,7 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_personal",
       "width": "half",
       "sort": 3,
       "relation": null
@@ -43128,12 +43208,12 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "interface": "input",
       "options": null,
       "label": "Số CMND/CCCD",
-      "note": "",
+      "note": "Dữ liệu nhạy cảm – chỉ System Admin xem",
       "required": false,
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_personal",
       "width": "half",
       "sort": 4,
       "relation": null
@@ -43149,9 +43229,25 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_personal",
       "width": "full",
       "sort": 5,
+      "relation": null
+    },
+    {
+      "field": "note",
+      "type": "text",
+      "interface": "textarea",
+      "options": null,
+      "label": "Ghi chú nội bộ",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "tab_personal",
+      "width": "full",
+      "sort": 6,
       "relation": null
     },
     {
@@ -43165,9 +43261,9 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_expertise",
       "width": "half",
-      "sort": 6,
+      "sort": 1,
       "relation": null
     },
     {
@@ -43181,9 +43277,9 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_expertise",
       "width": "full",
-      "sort": 7,
+      "sort": 2,
       "relation": null
     },
     {
@@ -43192,29 +43288,20 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "interface": "select-dropdown",
       "options": {
         "choices": [
-          {
-            "text": "Cơ bản",
-            "value": "basic"
-          },
-          {
-            "text": "Mở rộng",
-            "value": "extended"
-          },
-          {
-            "text": "Đầy đủ",
-            "value": "full"
-          }
+          { "text": "Cơ bản", "value": "basic" },
+          { "text": "Mở rộng", "value": "extended" },
+          { "text": "Đầy đủ", "value": "full" }
         ]
       },
-      "label": "Mức quyền đề xuất",
+      "label": "Mức đóng góp đề xuất",
       "note": "",
       "required": false,
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_expertise",
       "width": "half",
-      "sort": 8,
+      "sort": 3,
       "relation": null
     },
     {
@@ -43223,29 +43310,20 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "interface": "select-dropdown",
       "options": {
         "choices": [
-          {
-            "text": "Active",
-            "value": "active"
-          },
-          {
-            "text": "Inactive",
-            "value": "inactive"
-          },
-          {
-            "text": "Pending",
-            "value": "pending"
-          }
+          { "text": "Đang hợp tác", "value": "active" },
+          { "text": "Ngừng hợp tác", "value": "inactive" },
+          { "text": "Chờ xác nhận", "value": "pending" }
         ]
       },
       "label": "Trạng thái hợp tác",
       "note": "",
-      "required": false,
+      "required": true,
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_contract",
       "width": "half",
-      "sort": 9,
+      "sort": 1,
       "relation": null
     },
     {
@@ -43259,9 +43337,9 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_contract",
       "width": "half",
-      "sort": 10,
+      "sort": 2,
       "relation": null
     },
     {
@@ -43269,15 +43347,15 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "type": "date",
       "interface": "datetime",
       "options": null,
-      "label": "Ngày kết thúc",
+      "label": "Ngày kết thúc hợp tác",
       "note": "",
       "required": false,
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_contract",
       "width": "half",
-      "sort": 11,
+      "sort": 3,
       "relation": null
     },
     {
@@ -43285,15 +43363,15 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "type": "integer",
       "interface": "select-dropdown-m2o",
       "options": null,
-      "label": "Cơ quan đại diện",
+      "label": "Cơ quan liên kết",
       "note": "",
       "required": false,
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_contract",
       "width": "half",
-      "sort": 12,
+      "sort": 4,
       "relation": {
         "related_collection": "organizations",
         "related_field": null
@@ -43304,51 +43382,38 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "type": "integer",
       "interface": "select-dropdown-m2o",
       "options": null,
-      "label": "Tài khoản Cổng (Tùy chọn)",
-      "note": "",
+      "label": "Tài khoản Cổng PLQG",
+      "note": "Liên kết tài khoản cổng nếu CTV đã đăng ký",
       "required": false,
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
-      "width": "half",
-      "sort": 13,
+      "group": "tab_portal",
+      "width": "full",
+      "sort": 1,
       "relation": {
         "related_collection": "additional_information",
         "related_field": null
       }
     },
     {
-      "field": "note",
-      "type": "text",
-      "interface": "textarea",
-      "options": null,
-      "label": "Ghi chú nội bộ",
-      "note": "",
-      "required": false,
-      "readonly": false,
-      "hidden": false,
-      "system": false,
-      "group": null,
-      "width": "full",
-      "sort": 14,
-      "relation": null
-    },
-    {
       "field": "files",
       "type": "alias",
       "interface": "list-o2m",
-      "options": null,
+      "options": { "fields": ["directus_files_id.filename_download", "directus_files_id.type", "directus_files_id.filesize"] },
       "label": "Tài liệu đính kèm",
-      "note": "",
+      "note": "Hợp đồng, giấy tờ liên quan",
       "required": false,
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_files",
       "width": "full",
-      "sort": 15,
-      "relation": null
+      "sort": 1,
+      "relation": {
+        "related_collection": "collaborator_profiles_files",
+        "related_field": null
+      }
     },
     {
       "field": "date_created",
@@ -43358,7 +43423,7 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "label": "Ngày tạo",
       "note": "",
       "required": false,
-      "readonly": false,
+      "readonly": true,
       "hidden": false,
       "system": false,
       "group": null,
@@ -43374,7 +43439,7 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "label": "Ngày cập nhật",
       "note": "",
       "required": false,
-      "readonly": false,
+      "readonly": true,
       "hidden": false,
       "system": false,
       "group": null,
@@ -43390,7 +43455,7 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "label": "Người tạo",
       "note": "",
       "required": false,
-      "readonly": false,
+      "readonly": true,
       "hidden": false,
       "system": false,
       "group": null,
@@ -43409,7 +43474,7 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "label": "Người cập nhật cuối",
       "note": "",
       "required": false,
-      "readonly": false,
+      "readonly": true,
       "hidden": false,
       "system": false,
       "group": null,
@@ -44260,19 +44325,13 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "interface": "select-dropdown",
       "options": {
         "choices": [
-          {
-            "text": "Cán bộ CMS (Loại 1)",
-            "value": "cms_account"
-          },
-          {
-            "text": "Cán bộ Cổng (Loại 2)",
-            "value": "portal_only"
-          }
+          { "text": "Cán bộ CMS (có tài khoản Directus)", "value": "cms_account" },
+          { "text": "Cán bộ Cổng PLQG (không có tài khoản CMS)", "value": "portal_only" }
         ]
       },
       "label": "Loại cán bộ",
-      "note": "",
-      "required": false,
+      "note": "Chọn loại trước khi nhập thông tin",
+      "required": true,
       "readonly": false,
       "hidden": false,
       "system": false,
@@ -44282,19 +44341,67 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "relation": null
     },
     {
-      "field": "user_id",
-      "type": "uuid",
-      "interface": "select-dropdown-m2o",
+      "field": "tab_account",
+      "type": "alias",
+      "interface": "group-tabs",
       "options": null,
-      "label": "Tài khoản CMS",
+      "label": "Liên kết tài khoản",
       "note": "",
       "required": false,
       "readonly": false,
       "hidden": false,
       "system": false,
       "group": null,
+      "width": "full",
+      "sort": 10,
+      "relation": null
+    },
+    {
+      "field": "tab_personal",
+      "type": "alias",
+      "interface": "group-tabs",
+      "options": null,
+      "label": "Thông tin cá nhân",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 11,
+      "relation": null
+    },
+    {
+      "field": "tab_work",
+      "type": "alias",
+      "interface": "group-tabs",
+      "options": null,
+      "label": "Thông tin công tác",
+      "note": "",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": null,
+      "width": "full",
+      "sort": 12,
+      "relation": null
+    },
+    {
+      "field": "user_id",
+      "type": "uuid",
+      "interface": "select-dropdown-m2o",
+      "options": null,
+      "label": "Tài khoản CMS (directus_users)",
+      "note": "Bắt buộc khi Loại cán bộ = CMS",
+      "required": false,
+      "readonly": false,
+      "hidden": false,
+      "system": false,
+      "group": "tab_account",
       "width": "half",
-      "sort": 2,
+      "sort": 1,
       "relation": {
         "related_collection": "directus_users",
         "related_field": null
@@ -44305,15 +44412,15 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "type": "integer",
       "interface": "select-dropdown-m2o",
       "options": null,
-      "label": "Tài khoản Cổng (PLQG)",
-      "note": "",
+      "label": "Tài khoản Cổng PLQG",
+      "note": "Áp dụng cho cán bộ chỉ có tài khoản cổng",
       "required": false,
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_account",
       "width": "half",
-      "sort": 3,
+      "sort": 2,
       "relation": {
         "related_collection": "additional_information",
         "related_field": null
@@ -44326,13 +44433,13 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "options": null,
       "label": "Họ và tên",
       "note": "",
-      "required": false,
+      "required": true,
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_personal",
       "width": "half",
-      "sort": 4,
+      "sort": 1,
       "relation": null
     },
     {
@@ -44346,9 +44453,9 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_personal",
       "width": "half",
-      "sort": 5,
+      "sort": 2,
       "relation": null
     },
     {
@@ -44362,9 +44469,9 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_personal",
       "width": "half",
-      "sort": 6,
+      "sort": 3,
       "relation": null
     },
     {
@@ -44378,9 +44485,9 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_personal",
       "width": "half",
-      "sort": 7,
+      "sort": 4,
       "relation": {
         "related_collection": "directus_files",
         "related_field": null
@@ -44393,13 +44500,13 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "options": null,
       "label": "Cơ quan công tác",
       "note": "",
-      "required": false,
+      "required": true,
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_work",
       "width": "half",
-      "sort": 8,
+      "sort": 1,
       "relation": {
         "related_collection": "organizations",
         "related_field": null
@@ -44416,9 +44523,9 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_work",
       "width": "half",
-      "sort": 9,
+      "sort": 2,
       "relation": null
     },
     {
@@ -44432,9 +44539,9 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_work",
       "width": "half",
-      "sort": 10,
+      "sort": 3,
       "relation": null
     },
     {
@@ -44448,9 +44555,9 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_work",
       "width": "half",
-      "sort": 11,
+      "sort": 4,
       "relation": null
     },
     {
@@ -44464,9 +44571,9 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_work",
       "width": "full",
-      "sort": 12,
+      "sort": 5,
       "relation": null
     },
     {
@@ -44475,14 +44582,14 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "interface": "input",
       "options": null,
       "label": "Số CMND/CCCD",
-      "note": "",
+      "note": "Dữ liệu nhạy cảm – chỉ System Admin xem",
       "required": false,
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_work",
       "width": "half",
-      "sort": 13,
+      "sort": 6,
       "relation": null
     },
     {
@@ -44496,9 +44603,9 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_work",
       "width": "half",
-      "sort": 14,
+      "sort": 7,
       "relation": null
     },
     {
@@ -44507,29 +44614,20 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "interface": "select-dropdown",
       "options": {
         "choices": [
-          {
-            "text": "Đang công tác",
-            "value": "active"
-          },
-          {
-            "text": "Tạm nghỉ",
-            "value": "leave"
-          },
-          {
-            "text": "Đã nghỉ việc",
-            "value": "inactive"
-          }
+          { "text": "Đang công tác", "value": "active" },
+          { "text": "Tạm nghỉ", "value": "leave" },
+          { "text": "Đã nghỉ việc", "value": "inactive" }
         ]
       },
       "label": "Trạng thái công tác",
       "note": "",
-      "required": false,
+      "required": true,
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_work",
       "width": "half",
-      "sort": 15,
+      "sort": 8,
       "relation": null
     },
     {
@@ -44543,9 +44641,9 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "readonly": false,
       "hidden": false,
       "system": false,
-      "group": null,
+      "group": "tab_work",
       "width": "full",
-      "sort": 16,
+      "sort": 9,
       "relation": null
     },
     {
@@ -44556,7 +44654,7 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "label": "Ngày tạo",
       "note": "",
       "required": false,
-      "readonly": false,
+      "readonly": true,
       "hidden": false,
       "system": false,
       "group": null,
@@ -44572,7 +44670,7 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "label": "Ngày cập nhật",
       "note": "",
       "required": false,
-      "readonly": false,
+      "readonly": true,
       "hidden": false,
       "system": false,
       "group": null,
@@ -44588,7 +44686,7 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "label": "Người tạo",
       "note": "",
       "required": false,
-      "readonly": false,
+      "readonly": true,
       "hidden": false,
       "system": false,
       "group": null,
@@ -44607,7 +44705,7 @@ export const COLLECTION_FIELDS: Record<string, any[]> = {
       "label": "Người cập nhật cuối",
       "note": "",
       "required": false,
-      "readonly": false,
+      "readonly": true,
       "hidden": false,
       "system": false,
       "group": null,

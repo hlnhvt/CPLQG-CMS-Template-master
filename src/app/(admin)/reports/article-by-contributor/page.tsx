@@ -36,6 +36,8 @@ const MOCK_DATA = [
   { name: "Trương Vô Kỵ", status: "Hoạt động", posted: 60, approved: 58 }
 ].sort((a, b) => a.name.localeCompare(b.name));
 
+const formatNumber = (num: number) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
 export default function ArticleByContributorReport() {
   const [fromDate, setFromDate] = useState<string>("");
   const [toDate, setToDate] = useState<string>("");
@@ -244,8 +246,8 @@ export default function ArticleByContributorReport() {
                                {item.status}
                              </span>
                           </td>
-                          <td className="py-2 px-4 text-[13px] font-semibold text-gray-700 text-left border-r border-gray-50">{item.posted.toLocaleString()}</td>
-                          <td className="py-2 px-4 text-[13px] font-semibold text-gray-700 text-left border-r border-gray-50">{item.approved.toLocaleString()}</td>
+                          <td className="py-2 px-4 text-[13px] font-semibold text-gray-700 text-left border-r border-gray-50">{formatNumber(item.posted)}</td>
+                          <td className="py-2 px-4 text-[13px] font-semibold text-gray-700 text-left border-r border-gray-50">{formatNumber(item.approved)}</td>
                           <td className="py-2 px-4 text-[13px] font-bold text-[#5340FF] text-left">{ratio}</td>
                         </tr>
                       )}) : (
@@ -260,8 +262,8 @@ export default function ArticleByContributorReport() {
                         <tfoot>
                         <tr className="bg-gray-50">
                             <td className="py-2.5 px-4 text-[12px] font-bold uppercase text-gray-800 text-center border-r border-gray-200" colSpan={3}>Tổng cộng</td>
-                            <td className="py-2.5 px-4 text-[14px] font-black text-[#5340FF] text-left border-r border-gray-200">{totalPosted.toLocaleString()}</td>
-                            <td className="py-2.5 px-4 text-[14px] font-black text-[#5340FF] text-left border-r border-gray-200">{totalApproved.toLocaleString()}</td>
+                            <td className="py-2.5 px-4 text-[14px] font-black text-[#5340FF] text-left border-r border-gray-200">{formatNumber(totalPosted)}</td>
+                            <td className="py-2.5 px-4 text-[14px] font-black text-[#5340FF] text-left border-r border-gray-200">{formatNumber(totalApproved)}</td>
                             <td className="py-2.5 px-4 text-[14px] font-black text-[#5340FF] text-left">{totalRatio}</td>
                         </tr>
                         </tfoot>

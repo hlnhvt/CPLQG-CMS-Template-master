@@ -62,6 +62,22 @@ export const MENU_GROUPS = [
     ]
   },
   {
+    id: "user_management",
+    label: "Quản trị người dùng & Phân quyền",
+    icon: "Shield",
+    collections: [
+      { id: "role_metadata", label: "Nhóm người dùng (Metadata)", icon: "Users" },
+      { id: "staff_profiles", label: "Hồ sơ Cán bộ", icon: "Briefcase" },
+      { id: "collaborator_profiles", label: "Hồ sơ Cộng tác viên", icon: "UserCheck" },
+      { id: "additional_information", label: "Tài khoản Người dùng Cổng", icon: "User" },
+      { id: "law_expert", label: "Cán bộ Tư vấn Pháp lý", icon: "BookOpen" },
+      { id: "cms_menu_permissions", label: "Phân quyền Chức năng/Menu", icon: "Lock" },
+      { id: "content_publish_rules", label: "Quy tắc Phân cấp Xuất bản", icon: "Layers" },
+      { id: "cms_permission_configs", label: "Cấu hình Quyền Bổ sung", icon: "Settings" },
+      { id: "organizations", label: "Cơ quan & Đơn vị", icon: "Building2" },
+    ]
+  },
+  {
     id: "legal_document_manager",
     label: "Quản lý Văn bản QPPL",
     icon: "FileText",

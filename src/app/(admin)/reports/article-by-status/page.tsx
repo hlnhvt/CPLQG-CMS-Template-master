@@ -24,6 +24,8 @@ const MOCK_DATA = [
   { status: "Đã gỡ bài viết", news: 5, video: 0, image: 2, audio: 0 },
 ].sort((a, b) => ORDERED_STATUSES.indexOf(a.status) - ORDERED_STATUSES.indexOf(b.status));
 
+const formatNumber = (num: number) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+
 export default function ArticleByStatusReport() {
   const [fromDate, setFromDate] = useState<string>("");
   const [toDate, setToDate] = useState<string>("");
@@ -204,10 +206,10 @@ export default function ArticleByStatusReport() {
                         <tr key={index} className="border-b border-gray-100 hover:bg-blue-50/30 transition-colors group">
                           <td className="py-2 px-4 text-[13px] font-medium text-gray-500 text-left border-r border-gray-50">{index + 1}</td>
                           <td className="py-2 px-6 text-[13px] font-bold text-[#14233b] border-r border-gray-50">{item.status}</td>
-                          <td className="py-2 px-4 text-[13px] font-semibold text-gray-700 text-left border-r border-gray-50">{item.news.toLocaleString()}</td>
-                          <td className="py-2 px-4 text-[13px] font-semibold text-gray-700 text-left border-r border-gray-50">{item.video.toLocaleString()}</td>
-                          <td className="py-2 px-4 text-[13px] font-semibold text-gray-700 text-left border-r border-gray-50">{item.image.toLocaleString()}</td>
-                          <td className="py-2 px-4 text-[13px] font-semibold text-gray-700 text-left">{item.audio.toLocaleString()}</td>
+                          <td className="py-2 px-4 text-[13px] font-semibold text-gray-700 text-left border-r border-gray-50">{formatNumber(item.news)}</td>
+                          <td className="py-2 px-4 text-[13px] font-semibold text-gray-700 text-left border-r border-gray-50">{formatNumber(item.video)}</td>
+                          <td className="py-2 px-4 text-[13px] font-semibold text-gray-700 text-left border-r border-gray-50">{formatNumber(item.image)}</td>
+                          <td className="py-2 px-4 text-[13px] font-semibold text-gray-700 text-left">{formatNumber(item.audio)}</td>
                         </tr>
                       )) : (
                         <tr>
@@ -221,10 +223,10 @@ export default function ArticleByStatusReport() {
                         <tfoot>
                         <tr className="bg-gray-50">
                             <td className="py-2.5 px-4 text-[12px] font-bold uppercase text-gray-800 text-center border-r border-gray-200" colSpan={2}>Tổng cộng</td>
-                            <td className="py-2.5 px-4 text-[14px] font-black text-[#5340FF] text-left border-r border-gray-200">{totalNews.toLocaleString()}</td>
-                            <td className="py-2.5 px-4 text-[14px] font-black text-[#5340FF] text-left border-r border-gray-200">{totalVideo.toLocaleString()}</td>
-                            <td className="py-2.5 px-4 text-[14px] font-black text-[#5340FF] text-left border-r border-gray-200">{totalImage.toLocaleString()}</td>
-                            <td className="py-2.5 px-4 text-[14px] font-black text-[#5340FF] text-left">{totalAudio.toLocaleString()}</td>
+                            <td className="py-2.5 px-4 text-[14px] font-black text-[#5340FF] text-left border-r border-gray-200">{formatNumber(totalNews)}</td>
+                            <td className="py-2.5 px-4 text-[14px] font-black text-[#5340FF] text-left border-r border-gray-200">{formatNumber(totalVideo)}</td>
+                            <td className="py-2.5 px-4 text-[14px] font-black text-[#5340FF] text-left border-r border-gray-200">{formatNumber(totalImage)}</td>
+                            <td className="py-2.5 px-4 text-[14px] font-black text-[#5340FF] text-left">{formatNumber(totalAudio)}</td>
                         </tr>
                         </tfoot>
                     )}
