@@ -3,9 +3,10 @@
 import {
   BarChart2, PieChart, Clock, MapPin, Users, MessageSquare,
   LineChart, UserX, Timer, Hourglass, Smartphone, Activity,
-  FlaskConical, Download, RefreshCw, Calendar, ChevronDown,
+  FlaskConical, Download, RefreshCw, Calendar,
   Filter, Check, Bookmark, Printer, LayoutDashboard
 } from "lucide-react";
+import SurveySelector from "@/components/SurveySelector";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -30,12 +31,12 @@ const NAVIGATION_ITEMS = [
 
 export default function SurveyOverviewReport() {
   const pathname = usePathname();
-  const [fromDate, setFromDate] = useState<string>("2026-04-10");
-  const [toDate, setToDate] = useState<string>("2026-04-10");
-  const [isSurveyOpen, setIsSurveyOpen] = useState(false);
+  const [fromDate, setFromDate] = useState<string>(() => {
+    const d = new Date();
+    return new Date(d.getFullYear(), d.getMonth(), 1).toISOString().split('T')[0];
+  });
+  const [toDate, setToDate] = useState<string>(() => new Date().toISOString().split('T')[0]);
   const [isReloading, setIsReloading] = useState(false);
-  const surveyRef = useRef<HTMLDivElement>(null);
-
   const handleReload = () => {
     setIsReloading(true);
     setTimeout(() => {
@@ -47,15 +48,6 @@ export default function SurveyOverviewReport() {
     window.print();
   };
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (surveyRef.current && !surveyRef.current.contains(event.target as Node)) {
-        setIsSurveyOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   return (
     <div className="absolute inset-0 flex flex-col bg-[#f8fafc] overflow-hidden print:static print:h-auto print:bg-white print:overflow-visible">
@@ -107,21 +99,7 @@ export default function SurveyOverviewReport() {
         <div className="w-full max-w-none flex flex-col gap-6 mt-4">
 
           {/* Survey Selector */}
-          <div className="relative print:bg-gray-50 print:p-4 print:rounded-2xl print:border print:border-gray-100 print:mb-4" ref={surveyRef}>
-            <div
-              className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 flex items-center justify-between cursor-pointer hover:border-gray-300 transition-all shadow-sm print:border-none print:shadow-none print:p-0 print:bg-transparent"
-              onClick={() => setIsSurveyOpen(!isSurveyOpen)}
-            >
-              <span className="text-[15px] text-gray-700 font-sans tracking-tight">[Demo] Khảo sát Cổng Thông Tin Quốc Gia</span>
-              <ChevronDown size={20} className="text-gray-400 print:hidden" />
-            </div>
-            {isSurveyOpen && (
-              <div className="absolute top-full left-0 w-full mt-2 bg-white border border-gray-200 rounded-xl shadow-xl z-50 py-2 print:hidden">
-                <div className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-gray-700">[Demo] Khảo sát Cổng Thông Tin Quốc Gia</div>
-                <div className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-gray-600">Khảo sát mức độ hài lòng về dịch vụ công 2026</div>
-              </div>
-            )}
-          </div>
+          <SurveySelector />
 
           {/* Filter Section */}
           <div className="bg-[#eff3f8] p-4 rounded-2xl flex flex-col md:flex-row items-center gap-6 print:hidden">

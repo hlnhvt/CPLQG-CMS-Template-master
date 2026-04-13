@@ -1,9 +1,10 @@
 "use client";
 
 import { 
-  Calendar, ChevronDown, FlaskConical, Download, RefreshCw, BarChart2,
+  Calendar, FlaskConical, Download, RefreshCw, BarChart2,
   PieChart, Clock, MapPin, Users, Activity, LayoutDashboard, Timer
 } from "lucide-react";
+import SurveySelector from "@/components/SurveySelector";
 import { useState, useRef, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
@@ -23,10 +24,7 @@ const QUESTION_TIMING_DATA = [
 ];
 
 export default function QuestionTimeReport() {
-  const [isSurveyOpen, setIsSurveyOpen] = useState(false);
   const [isReloading, setIsReloading] = useState(false);
-  const surveyRef = useRef<HTMLDivElement>(null);
-
   const handleReload = () => {
     setIsReloading(true);
     setTimeout(() => {
@@ -38,15 +36,6 @@ export default function QuestionTimeReport() {
     window.print();
   };
 
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (surveyRef.current && !surveyRef.current.contains(event.target as Node)) {
-        setIsSurveyOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
 
   const formatTime = (seconds: number) => {
     if (seconds < 60) return `${seconds}s`;
@@ -92,17 +81,7 @@ export default function QuestionTimeReport() {
            </div>
         )}
         <div className="w-full max-w-none flex flex-col gap-0 mt-4">
-          <div className="relative mb-6" ref={surveyRef}>
-            <div className="w-full bg-white border border-gray-200 rounded-lg px-4 py-3 flex items-center justify-between cursor-pointer hover:border-gray-300 transition-all shadow-sm" onClick={() => setIsSurveyOpen(!isSurveyOpen)}>
-              <span className="text-[14px] text-[#334155] font-sans tracking-tight">[Demo] Khảo sát Cổng Thông Tin Quốc Gia</span>
-              <ChevronDown size={20} className="text-gray-400 print:hidden" />
-            </div>
-            {isSurveyOpen && (
-              <div className="absolute top-full left-0 w-full mt-2 bg-white border border-gray-200 rounded-lg shadow-xl z-50 py-2 print:hidden">
-                <div className="px-4 py-2 hover:bg-gray-50 cursor-pointer text-sm font-bold text-[#334155] font-sans">[Demo] Khảo sát Cổng Thông Tin Quốc Gia</div>
-              </div>
-            )}
-          </div>
+          <SurveySelector />
 
           <h2 className="text-[18px] font-bold text-[#334155] mb-6 tracking-tight">Thống Kê Thời Gian Trả Lời Từng Câu Hỏi</h2>
 
