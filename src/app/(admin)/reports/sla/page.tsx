@@ -50,11 +50,11 @@ const MOCK_SLA_STATS = [
 
 // Mock data cho Các phiên vi phạm
 const MOCK_BREACHED_SESSIONS = [
-  { id: "CW-10293", agent: "Nguyễn Văn A", policy: "SLA Khẩn cấp (15p)", createdAt: "2026-05-14 08:15", firstResponse: 18, deadline: "2026-05-14 08:30", status: "resolved" },
-  { id: "CW-10294", agent: "Trần Thị B", policy: "SLA Ưu tiên (30p)", createdAt: "2026-05-14 09:00", firstResponse: 35, deadline: "2026-05-14 09:30", status: "open" },
-  { id: "CW-10305", agent: "Lê Văn C", policy: "SLA Tiêu chuẩn (2h)", createdAt: "2026-05-13 14:20", firstResponse: 130, deadline: "2026-05-13 16:20", status: "resolved" },
-  { id: "CW-10312", agent: "Nguyễn Văn A", policy: "SLA Tiêu chuẩn (2h)", createdAt: "2026-05-13 15:00", firstResponse: 145, deadline: "2026-05-13 17:00", status: "pending" },
-  { id: "CW-10328", agent: "Hoàng Văn E", policy: "SLA Đối tác (4h)", createdAt: "2026-05-12 10:15", firstResponse: 260, deadline: "2026-05-12 14:15", status: "resolved" }
+  { id: "CW-10293", agent: "Nguyễn Văn A", policy: "SLA Khẩn cấp (15p)", createdAt: "2026-05-14 08:15", firstReplyAt: "2026-05-14 08:33", lastReplyAt: "2026-05-14 08:50", firstResponse: 18, deadline: "2026-05-14 08:30", status: "resolved" },
+  { id: "CW-10294", agent: "Trần Thị B", policy: "SLA Ưu tiên (30p)", createdAt: "2026-05-14 09:00", firstReplyAt: "2026-05-14 09:35", lastReplyAt: "2026-05-14 09:35", firstResponse: 35, deadline: "2026-05-14 09:30", status: "open" },
+  { id: "CW-10305", agent: "Lê Văn C", policy: "SLA Tiêu chuẩn (2h)", createdAt: "2026-05-13 14:20", firstReplyAt: "2026-05-13 16:30", lastReplyAt: "2026-05-13 17:10", firstResponse: 130, deadline: "2026-05-13 16:20", status: "resolved" },
+  { id: "CW-10312", agent: "Nguyễn Văn A", policy: "SLA Tiêu chuẩn (2h)", createdAt: "2026-05-13 15:00", firstReplyAt: "2026-05-13 17:25", lastReplyAt: null, firstResponse: 145, deadline: "2026-05-13 17:00", status: "pending" },
+  { id: "CW-10328", agent: "Hoàng Văn E", policy: "SLA Đối tác (4h)", createdAt: "2026-05-12 10:15", firstReplyAt: "2026-05-12 14:35", lastReplyAt: "2026-05-12 16:00", firstResponse: 260, deadline: "2026-05-12 14:15", status: "resolved" }
 ];
 
 const formatNumber = (num: number) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -560,7 +560,7 @@ export default function SLAReportPage() {
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={14} />
                     <input
                       type="text"
-                      placeholder="Tìm theo ID phiên..."
+                      placeholder="Tìm theo Mã phiên..."
                       className="h-8 pl-8 pr-3 text-[13px] border border-gray-200 rounded-lg outline-none focus:border-rose-300 focus:ring-1 focus:ring-rose-300 w-[200px]"
                     />
                   </div>
@@ -571,11 +571,13 @@ export default function SLAReportPage() {
                   <thead>
                     <tr className="border-b border-gray-200 bg-gray-50/50">
                       <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] w-[5%] min-w-[50px] text-left border-r border-gray-100 uppercase">STT</th>
-                      <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">ID Phiên</th>
+                      <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">Mã phiên</th>
                       <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">Tư vấn viên</th>
                       <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">Chính sách SLA</th>
                       <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">Thời điểm tạo</th>
-                      <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-right uppercase">Phản hồi (phút)</th>
+                      <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-right uppercase">Thời gian chờ (phút)</th>
+                      <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">Phản hồi lần đầu</th>
+                      <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">Phản hồi lần cuối</th>
                       <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">Hạn cuối SLA</th>
                       <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] text-center uppercase">Trạng thái</th>
                     </tr>
@@ -598,6 +600,9 @@ export default function SLAReportPage() {
                         </td>
                         <td className="py-2.5 px-4 text-[13px] font-medium text-gray-600 border-r border-gray-50">{item.createdAt}</td>
                         <td className="py-2.5 px-4 text-[13px] font-bold text-rose-600 text-right border-r border-gray-50">{item.firstResponse}</td>
+                        <td className="py-2.5 px-4 text-[13px] font-medium text-gray-600 border-r border-gray-50">{item.firstReplyAt ?? <span className="text-gray-300 italic">—</span>}</td>
+                        <td className="py-2.5 px-4 text-[13px] font-medium text-gray-600 border-r border-gray-50">{item.lastReplyAt ?? <span className="text-gray-300 italic">—</span>}</td>
+
                         <td className="py-2.5 px-4 text-[13px] font-medium text-gray-600 border-r border-gray-50">{item.deadline}</td>
                         <td className="py-2.5 px-4 text-center">
                           {item.status === 'resolved' && <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-700">Đã giải quyết</span>}
