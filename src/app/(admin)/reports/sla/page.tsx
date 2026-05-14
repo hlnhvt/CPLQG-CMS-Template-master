@@ -50,11 +50,11 @@ const MOCK_SLA_STATS = [
 
 // Mock data cho Các phiên vi phạm
 const MOCK_BREACHED_SESSIONS = [
-  { id: "CW-10293", agent: "Nguyễn Văn A", policy: "SLA Khẩn cấp (15p)", createdAt: "2026-05-14 08:15", firstWait: 18,  lastWait: 35,  firstResponse: 18,  deadline: "2026-05-14 08:30", status: "resolved" },
-  { id: "CW-10294", agent: "Trần Thị B",   policy: "SLA Ưu tiên (30p)",  createdAt: "2026-05-14 09:00", firstWait: 35,  lastWait: 35,  firstResponse: 35,  deadline: "2026-05-14 09:30", status: "open" },
-  { id: "CW-10305", agent: "Lê Văn C",     policy: "SLA Tiêu chuẩn (2h)",createdAt: "2026-05-13 14:20", firstWait: 130, lastWait: 170, firstResponse: 130, deadline: "2026-05-13 16:20", status: "resolved" },
-  { id: "CW-10312", agent: "Nguyễn Văn A", policy: "SLA Tiêu chuẩn (2h)",createdAt: "2026-05-13 15:00", firstWait: 145, lastWait: null, firstResponse: 145, deadline: "2026-05-13 17:00", status: "pending" },
-  { id: "CW-10328", agent: "Hoàng Văn E",  policy: "SLA Đối tác (4h)",   createdAt: "2026-05-12 10:15", firstWait: 260, lastWait: 345, firstResponse: 260, deadline: "2026-05-12 14:15", status: "resolved" }
+  { id: "CW-10293", agent: "Nguyễn Văn A", policy: "SLA Khẩn cấp (15p)", createdAt: "2026-05-14 08:15", firstWait: 18, lastWait: 35, firstResponse: 18, deadline: "2026-05-14 08:30", status: "resolved" },
+  { id: "CW-10294", agent: "Trần Thị B", policy: "SLA Ưu tiên (30p)", createdAt: "2026-05-14 09:00", firstWait: 35, lastWait: 35, firstResponse: 35, deadline: "2026-05-14 09:30", status: "open" },
+  { id: "CW-10305", agent: "Lê Văn C", policy: "SLA Tiêu chuẩn (2h)", createdAt: "2026-05-13 14:20", firstWait: 130, lastWait: 170, firstResponse: 130, deadline: "2026-05-13 16:20", status: "resolved" },
+  { id: "CW-10312", agent: "Nguyễn Văn A", policy: "SLA Tiêu chuẩn (2h)", createdAt: "2026-05-13 15:00", firstWait: 145, lastWait: null, firstResponse: 145, deadline: "2026-05-13 17:00", status: "pending" },
+  { id: "CW-10328", agent: "Hoàng Văn E", policy: "SLA Đối tác (4h)", createdAt: "2026-05-12 10:15", firstWait: 260, lastWait: 345, firstResponse: 260, deadline: "2026-05-12 14:15", status: "resolved" }
 ];
 
 const formatNumber = (num: number) => num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
@@ -575,7 +575,6 @@ export default function SLAReportPage() {
                       <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">Tư vấn viên</th>
                       <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">Chính sách SLA</th>
                       <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">Thời điểm tạo</th>
-                      <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-right uppercase">Thời gian chờ (phút)</th>
                       <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">Thời gian chờ lần đầu (phút)</th>
                       <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">Thời gian chờ lần gần nhất (phút)</th>
                       <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 text-left uppercase">Hạn cuối SLA</th>
@@ -599,7 +598,6 @@ export default function SLAReportPage() {
                           </span>
                         </td>
                         <td className="py-2.5 px-4 text-[13px] font-medium text-gray-600 border-r border-gray-50">{item.createdAt}</td>
-                        <td className="py-2.5 px-4 text-[13px] font-bold text-rose-600 text-right border-r border-gray-50">{item.firstResponse}</td>
                         <td className="py-2.5 px-4 text-[13px] font-bold text-rose-600 text-right border-r border-gray-50">{item.firstWait ?? <span className="text-gray-300 italic font-normal">—</span>}</td>
                         <td className="py-2.5 px-4 text-[13px] font-bold text-rose-600 text-right border-r border-gray-50">{item.lastWait ?? <span className="text-gray-300 italic font-normal">—</span>}</td>
                         <td className="py-2.5 px-4 text-[13px] font-medium text-gray-600 border-r border-gray-50">{item.deadline}</td>
