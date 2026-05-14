@@ -295,43 +295,43 @@ export default function SLAReportPage() {
             {/* SLA KPI Cards */}
             {activeTab === 'stats' && (
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 animate-in fade-in slide-in-from-bottom-2 duration-300">
-              <div className="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col gap-2">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col gap-3">
                  <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold text-gray-500">Tổng số phiên (theo dõi SLA)</span>
-                    <div className="w-8 h-8 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
-                       <Activity size={16} strokeWidth={2.5} />
+                    <div className="w-9 h-9 rounded-full bg-blue-50 flex items-center justify-center text-blue-600">
+                       <Activity size={18} strokeWidth={2.5} />
                     </div>
                  </div>
-                 <div className="text-2xl font-black text-[#14233b]">{formatNumber(totalSessions)}</div>
+                 <div className="text-4xl font-black text-[#14233b] leading-none">{formatNumber(totalSessions)}</div>
               </div>
-              <div className="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col gap-2">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col gap-3">
                  <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold text-gray-500">Tỷ lệ đáp ứng SLA</span>
-                    <div className="w-8 h-8 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
-                       <Check size={16} strokeWidth={2.5} />
+                    <div className="w-9 h-9 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600">
+                       <Check size={18} strokeWidth={2.5} />
                     </div>
                  </div>
-                 <div className="text-2xl font-black text-emerald-600">{avgMetRate}%</div>
+                 <div className="text-4xl font-black text-emerald-600 leading-none">{avgMetRate}%</div>
                  <div className="text-xs text-gray-400 font-medium">{formatNumber(totalMet)} phiên đáp ứng</div>
               </div>
-              <div className="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col gap-2">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col gap-3">
                  <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold text-gray-500">Số phiên vi phạm SLA</span>
-                    <div className="w-8 h-8 rounded-full bg-rose-50 flex items-center justify-center text-rose-600">
-                       <AlertCircle size={16} strokeWidth={2.5} />
+                    <div className="w-9 h-9 rounded-full bg-rose-50 flex items-center justify-center text-rose-600">
+                       <AlertCircle size={18} strokeWidth={2.5} />
                     </div>
                  </div>
-                 <div className="text-2xl font-black text-rose-600">{formatNumber(totalBreached)}</div>
+                 <div className="text-4xl font-black text-rose-600 leading-none">{formatNumber(totalBreached)}</div>
                  <div className="text-xs text-gray-400 font-medium">{totalSessions > 0 ? ((totalBreached/totalSessions)*100).toFixed(1) : 0}% trên tổng số</div>
               </div>
-              <div className="bg-white p-5 rounded-2xl border border-gray-200 shadow-sm flex flex-col gap-2">
+              <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex flex-col gap-3">
                  <div className="flex items-center justify-between">
                     <span className="text-sm font-semibold text-gray-500">TG phản hồi lần đầu (TB)</span>
-                    <div className="w-8 h-8 rounded-full bg-orange-50 flex items-center justify-center text-orange-600">
-                       <Clock size={16} strokeWidth={2.5} />
+                    <div className="w-9 h-9 rounded-full bg-orange-50 flex items-center justify-center text-orange-600">
+                       <Clock size={18} strokeWidth={2.5} />
                     </div>
                  </div>
-                 <div className="text-2xl font-black text-orange-600">22.5 <span className="text-sm font-semibold text-gray-500">phút</span></div>
+                 <div className="text-4xl font-black text-orange-600 leading-none">22.5 <span className="text-lg font-semibold text-gray-500">phút</span></div>
               </div>
             </div>
             )}
