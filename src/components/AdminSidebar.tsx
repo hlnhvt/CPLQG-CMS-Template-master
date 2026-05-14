@@ -95,6 +95,7 @@ export default function AdminSidebar() {
               <SidebarItem icon={BarChart} label="Theo chuyên mục" href="/reports/article-by-category" active={pathname === '/reports/article-by-category'} />
               <SidebarItem icon={Users} label="Theo người biên tập" href="/reports/article-by-contributor" active={pathname === '/reports/article-by-contributor'} />
               <SidebarItem icon={ListFilter} label="Theo trạng thái" href="/reports/article-by-status" active={pathname === '/reports/article-by-status'} />
+              <SidebarItem icon={Timer} label="Báo cáo SLA" href="/reports/sla" active={pathname === '/reports/sla'} />
               
               <div className="my-2 border-t border-gray-200"></div>
               
