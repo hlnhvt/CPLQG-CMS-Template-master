@@ -187,7 +187,7 @@ function FeedbackCard({ time, text, words, chars }: { time: string; text: string
       <div className="flex flex-col gap-2">
         <div className="flex items-start justify-between">
           <span className="text-[11px] font-bold text-gray-400">{time}</span>
-          <span className="text-[11px] font-bold text-gray-400 bg-gray-50 px-2 py-0.5 rounded">{words} từ • {chars} ký tự</span>
+          {/* <span className="text-[11px] font-bold text-gray-400 bg-gray-50 px-2 py-0.5 rounded">{words} từ • {chars} ký tự</span> */}
         </div>
         <p className="text-[14px] font-medium text-[#334155] leading-relaxed">{text}</p>
       </div>
