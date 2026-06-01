@@ -9,7 +9,7 @@ import {
   Layers, Lock, Sliders, Bookmark, Globe, Sparkles, ShoppingBag,
   Puzzle, AlertCircle, MessageSquare, LayoutTemplate, FileText, Hash, Megaphone,
   Radio, BarChart, Database, ListFilter, ClipboardList, PieChart, Clock, MapPin,
-  BarChart2, LineChart, UserX, Timer, Hourglass, Smartphone, Activity
+  BarChart2, LineChart, UserX, Timer, Hourglass, Smartphone, Activity, Lightbulb
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MENU_GROUPS } from "@/lib/menu-data";
@@ -27,7 +27,7 @@ export default function AdminSidebar() {
   const isReports = pathname.includes('/reports');
   const isContent = !isSettings && !isReports && (pathname.includes('/content') || pathname.includes('/collections') || pathname === '/' || pathname === '/(admin)');
 
-  const [openGroups, setOpenGroups] = useState<string[]>(["Content_Management", "Survey_Management"]);
+  const [openGroups, setOpenGroups] = useState<string[]>(["Content_Management", "Survey_Management", "Suggestion_Management"]);
 
   const toggleGroup = (id: string) => {
     setOpenGroups(prev => prev.includes(id) ? prev.filter(g => g !== id) : [...prev, id]);
@@ -69,22 +69,22 @@ export default function AdminSidebar() {
               <SidebarItem icon={TrendingUp} label="Flows" href="#" />
               <SidebarItem icon={Users} label="Vai trò người dùng" href="/collections/directus_roles" />
               <SidebarItem icon={Lock} label="Access Policies" href="/collections/directus_access" />
-              
+
               <div className="my-2 border-t border-gray-200"></div>
-              
+
               <SidebarItem icon={Settings} label="Cài đặt" href="#" />
               <SidebarItem icon={Sliders} label="Appearance" href="#" />
               <SidebarItem icon={Bookmark} label="Đánh dấu" href="#" />
               <SidebarItem icon={Globe} label="Các Bản Dịch" href="#" />
               <SidebarItem icon={Sparkles} label="AI" href="#" />
-              
+
               <div className="my-2 border-t border-gray-200"></div>
-              
+
               <SidebarItem icon={ShoppingBag} label="Cửa hàng" href="#" />
               <SidebarItem icon={Puzzle} label="Phần mở rộng" href="#" />
-              
+
               <div className="my-2 border-t border-gray-200"></div>
-              
+
               <SidebarItem icon={AlertCircle} label="Báo Cáo Lỗi" href="#" />
               <SidebarItem icon={MessageSquare} label="Yêu cầu tính năng" href="#" />
             </>
@@ -96,9 +96,9 @@ export default function AdminSidebar() {
               <SidebarItem icon={Users} label="Theo người biên tập" href="/reports/article-by-contributor" active={pathname === '/reports/article-by-contributor'} />
               <SidebarItem icon={ListFilter} label="Theo trạng thái" href="/reports/article-by-status" active={pathname === '/reports/article-by-status'} />
               <SidebarItem icon={Timer} label="Báo cáo SLA" href="/reports/sla" active={pathname === '/reports/sla'} />
-              
+
               <div className="my-2 border-t border-gray-200"></div>
-              
+
               <SidebarGroup icon={ClipboardList} label="Quản Lý Khảo Sát" expanded={openGroups.includes('Survey_Management')} onClick={() => toggleGroup('Survey_Management')}>
                 <SidebarItem icon={PieChart} label="Tổng quan" href="/reports/survey/overview" active={pathname === '/reports/survey/overview'} indent />
                 <SidebarItem icon={Clock} label="Theo thời gian" href="/reports/survey/time" active={pathname === '/reports/survey/time'} indent />
@@ -113,6 +113,13 @@ export default function AdminSidebar() {
                 <SidebarItem icon={Smartphone} label="Thiết bị" href="/reports/survey/devices" active={pathname === '/reports/survey/devices'} indent />
                 <SidebarItem icon={Activity} label="Hành vi" href="/reports/survey/behavior" active={pathname === '/reports/survey/behavior'} indent />
               </SidebarGroup>
+
+              <div className="my-2 border-t border-gray-200"></div>
+
+              <SidebarGroup icon={Lightbulb} label="Thống kê Hiến kế" expanded={openGroups.includes('Suggestion_Management')} onClick={() => toggleGroup('Suggestion_Management')}>
+                <SidebarItem icon={PieChart} label="Thống kê theo lĩnh vực" href="/reports/suggestion/overview" active={pathname === '/reports/suggestion/overview'} indent />
+                <SidebarItem icon={HelpCircle} label="Chúng tôi cần bạn" href="/reports/we-need-you/overview" active={pathname === '/reports/we-need-you/overview'} indent />
+              </SidebarGroup>
             </>
           )}
 
@@ -120,23 +127,23 @@ export default function AdminSidebar() {
             if (group.id === "Ungrouped") return null; // skip root metadata if you prefer
             const GroupIcon = ICON_MAP[group.icon] || Folder;
             const isExpanded = openGroups.includes(group.id);
-            
+
             return (
-               <SidebarGroup key={group.id} icon={GroupIcon} label={group.label} expanded={isExpanded} onClick={() => toggleGroup(group.id)}>
-                 {group.collections.map(col => {
-                    const ColIcon = ICON_MAP[col.icon] || FileText;
-                    return (
-                        <SidebarItem 
-                           key={col.id}
-                           icon={ColIcon} 
-                           label={col.label} 
-                           href={`/collections/${col.id}`} 
-                           active={pathname.includes(`/collections/${col.id}`)} 
-                           indent 
-                        />
-                    );
-                 })}
-               </SidebarGroup>
+              <SidebarGroup key={group.id} icon={GroupIcon} label={group.label} expanded={isExpanded} onClick={() => toggleGroup(group.id)}>
+                {group.collections.map(col => {
+                  const ColIcon = ICON_MAP[col.icon] || FileText;
+                  return (
+                    <SidebarItem
+                      key={col.id}
+                      icon={ColIcon}
+                      label={col.label}
+                      href={`/collections/${col.id}`}
+                      active={pathname.includes(`/collections/${col.id}`)}
+                      indent
+                    />
+                  );
+                })}
+              </SidebarGroup>
             );
           })}
         </div>
