@@ -561,7 +561,7 @@ export default function WeNeedYouOverviewReport() {
                                 <span className="text-xs font-bold text-[#14233b]">{resp.name}</span>
                                 <span className="text-[10px] font-medium text-gray-400">{resp.time}</span>
                               </div>
-                              <p className="text-xs font-medium text-gray-600 leading-relaxed italic">"{resp.content}"</p>
+                              <p className="text-xs font-medium text-gray-600 leading-relaxed italic">&ldquo;{resp.content}&rdquo;</p>
                             </div>
                           ))}
                         </div>
