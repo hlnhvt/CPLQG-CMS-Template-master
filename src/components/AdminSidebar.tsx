@@ -118,7 +118,7 @@ export default function AdminSidebar() {
 
               <SidebarGroup icon={Lightbulb} label="Thống kê Hiến kế" expanded={openGroups.includes('Suggestion_Management')} onClick={() => toggleGroup('Suggestion_Management')}>
                 <SidebarItem icon={PieChart} label="Thống kê theo lĩnh vực" href="/reports/suggestion/overview" active={pathname === '/reports/suggestion/overview'} indent />
-                <SidebarItem icon={HelpCircle} label="Chúng tôi cần bạn" href="/reports/we-need-you/overview" active={pathname === '/reports/we-need-you/overview'} indent />
+                <SidebarItem icon={HelpCircle} label="Thống kê Chúng tôi cần bạn" href="/reports/we-need-you/overview" active={pathname === '/reports/we-need-you/overview'} indent />
               </SidebarGroup>
             </>
           )}

@@ -1,6 +1,6 @@
 "use client";
 
-import { 
+import {
   Calendar, FlaskConical, Download, RefreshCw, BarChart2,
   PieChart, Clock, MapPin, Users, Activity, LayoutDashboard,
   HelpCircle, ChevronDown, Search, Folder, MessageSquare, Check, Filter, Bookmark, Printer
@@ -218,7 +218,7 @@ export default function WeNeedYouOverviewReport() {
     const m = String(d.getMonth() + 1).padStart(2, '0');
     return `${y}-${m}-01`;
   });
-  
+
   const [toDate, setToDate] = useState<string>(() => {
     const d = new Date();
     const y = d.getFullYear();
@@ -237,7 +237,7 @@ export default function WeNeedYouOverviewReport() {
     const m = String(d.getMonth() + 1).padStart(2, '0');
     return `${y}-${m}-01`;
   });
-  
+
   const [selectorToDate, setSelectorToDate] = useState<string>(() => {
     const d = new Date();
     const y = d.getFullYear();
@@ -278,7 +278,7 @@ export default function WeNeedYouOverviewReport() {
 
   return (
     <div className="absolute inset-0 flex flex-col bg-[#f8fafc] overflow-hidden print:static print:h-auto print:bg-white print:overflow-visible">
-      
+
       {/* Header */}
       <header className="px-6 py-6 shrink-0 flex items-center justify-between bg-white border-b border-gray-200 print:border-none print:pb-0">
         <div>
@@ -291,7 +291,7 @@ export default function WeNeedYouOverviewReport() {
           </div>
           <h1 className="text-xl font-bold text-[#14233b] flex items-center gap-2">
             <HelpCircle size={22} className="text-[#5340FF]" />
-            Thống kê Chúng Tôi Cần Bạn
+            Thống kê Chúng tôi cần bạn
           </h1>
         </div>
 
@@ -300,7 +300,7 @@ export default function WeNeedYouOverviewReport() {
 
       {/* Main content scroll container */}
       <div className="flex-1 overflow-y-auto w-full flex justify-start p-6 pt-0 custom-scrollbar relative print:overflow-visible print:px-0 print:p-0">
-        
+
         {isReloading && (
           <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] z-[100] flex items-center justify-center animate-in fade-in duration-300 print:hidden">
             <div className="flex flex-col items-center gap-3">
@@ -314,91 +314,91 @@ export default function WeNeedYouOverviewReport() {
 
           {/* Interactive Campaign Selector */}
           <div className="relative print:hidden" ref={selectorRef}>
-            <div 
-              className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 flex items-center justify-between cursor-pointer hover:border-gray-300 transition-all shadow-sm group" 
+            <div
+              className="w-full bg-white border border-gray-200 rounded-xl px-4 py-3 flex items-center justify-between cursor-pointer hover:border-gray-300 transition-all shadow-sm group"
               onClick={() => setIsSelectorOpen(!isSelectorOpen)}
             >
               <div className="flex items-center gap-3">
                 <div className="w-8 h-8 rounded-md bg-[#5340FF]/10 flex items-center justify-center text-[#5340FF]">
-                   <Filter size={16} strokeWidth={2.5} />
+                  <Filter size={16} strokeWidth={2.5} />
                 </div>
                 <span className="text-[14px] text-[#334155] font-bold truncate pr-4">
                   {selectedCampaign.title}
                 </span>
               </div>
               <div className="flex items-center gap-3 shrink-0">
-                 <span className="text-xs bg-emerald-50 text-emerald-600 px-2 py-1 rounded font-bold">{selectedCampaign.status}</span>
-                 <ChevronDown size={20} className={cn("text-gray-400 transition-transform duration-200", isSelectorOpen && "rotate-180")} />
+                <span className="text-xs bg-emerald-50 text-emerald-600 px-2 py-1 rounded font-bold">{selectedCampaign.status}</span>
+                <ChevronDown size={20} className={cn("text-gray-400 transition-transform duration-200", isSelectorOpen && "rotate-180")} />
               </div>
             </div>
 
             {isSelectorOpen && (
               <div className="absolute top-full left-0 w-full mt-2 bg-white border border-gray-200 rounded-xl shadow-2xl z-[100] flex flex-col overflow-hidden animate-in fade-in duration-200">
                 <div className="bg-slate-50 border-b border-gray-100 p-3 grid grid-cols-1 md:grid-cols-2 gap-3">
-                   {/* Date Range Selector */}
-                   <div className="flex items-center gap-2 border border-gray-200 bg-white rounded-md overflow-hidden px-2 py-1">
-                      <Calendar size={14} className="text-gray-400 shrink-0" />
-                      <input 
-                         type="date" 
-                         className="text-[11px] text-gray-600 bg-transparent outline-none w-full border-r border-gray-200 pr-1.5"
-                         value={selectorFromDate}
-                         onChange={(e) => setSelectorFromDate(e.target.value)}
-                         title="Từ ngày"
-                      />
-                      <input 
-                         type="date" 
-                         className="text-[11px] text-gray-600 bg-transparent outline-none w-full pl-1.5"
-                         value={selectorToDate}
-                         onChange={(e) => setSelectorToDate(e.target.value)}
-                         title="Đến ngày"
-                      />
-                   </div>
-                   {/* Search Input */}
-                   <div className="flex items-center gap-2 border border-gray-200 bg-white rounded-md overflow-hidden px-2.5">
-                      <Search size={15} className="text-gray-400 shrink-0" />
-                      <input 
-                         type="text" 
-                         placeholder="Tìm kiếm chủ đề..."
-                         className="w-full text-xs text-gray-600 py-1.5 bg-transparent outline-none"
-                         value={searchQuery}
-                         onChange={(e) => setSearchQuery(e.target.value)}
-                      />
-                   </div>
+                  {/* Date Range Selector */}
+                  <div className="flex items-center gap-2 border border-gray-200 bg-white rounded-md overflow-hidden px-2 py-1">
+                    <Calendar size={14} className="text-gray-400 shrink-0" />
+                    <input
+                      type="date"
+                      className="text-[11px] text-gray-600 bg-transparent outline-none w-full border-r border-gray-200 pr-1.5"
+                      value={selectorFromDate}
+                      onChange={(e) => setSelectorFromDate(e.target.value)}
+                      title="Từ ngày"
+                    />
+                    <input
+                      type="date"
+                      className="text-[11px] text-gray-600 bg-transparent outline-none w-full pl-1.5"
+                      value={selectorToDate}
+                      onChange={(e) => setSelectorToDate(e.target.value)}
+                      title="Đến ngày"
+                    />
+                  </div>
+                  {/* Search Input */}
+                  <div className="flex items-center gap-2 border border-gray-200 bg-white rounded-md overflow-hidden px-2.5">
+                    <Search size={15} className="text-gray-400 shrink-0" />
+                    <input
+                      type="text"
+                      placeholder="Tìm kiếm chủ đề..."
+                      className="w-full text-xs text-gray-600 py-1.5 bg-transparent outline-none"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                  </div>
                 </div>
 
                 <div className="max-h-[220px] overflow-y-auto custom-scrollbar p-1.5 flex flex-col gap-0.5">
-                   {filteredCampaigns.length > 0 ? (
-                      filteredCampaigns.map((campaign) => (
-                         <div 
-                            key={campaign.id}
-                            className={cn(
-                               "px-4 py-2.5 rounded-lg cursor-pointer flex flex-col gap-0.5 transition-colors",
-                               selectedCampaign.id === campaign.id ? "bg-[#5340FF]/5" : "hover:bg-slate-50"
-                            )}
-                            onClick={() => {
-                               setSelectedCampaign(campaign);
-                               setIsSelectorOpen(false);
-                            }}
-                         >
-                            <div className="flex items-center justify-between gap-4">
-                               <span className={cn(
-                                  "text-[13px] truncate", 
-                                  selectedCampaign.id === campaign.id ? "font-bold text-[#5340FF]" : "font-medium text-[#334155]"
-                               )}>
-                                  {campaign.title}
-                               </span>
-                               {selectedCampaign.id === campaign.id && (
-                                  <div className="w-1.5 h-1.5 rounded-full bg-[#5340FF] shrink-0"></div>
-                               )}
-                            </div>
-                            <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{campaign.topic}</span>
-                         </div>
-                      ))
-                   ) : (
-                      <div className="p-6 text-center text-xs text-gray-400 font-bold">
-                         Không tìm thấy chủ đề nào.
+                  {filteredCampaigns.length > 0 ? (
+                    filteredCampaigns.map((campaign) => (
+                      <div
+                        key={campaign.id}
+                        className={cn(
+                          "px-4 py-2.5 rounded-lg cursor-pointer flex flex-col gap-0.5 transition-colors",
+                          selectedCampaign.id === campaign.id ? "bg-[#5340FF]/5" : "hover:bg-slate-50"
+                        )}
+                        onClick={() => {
+                          setSelectedCampaign(campaign);
+                          setIsSelectorOpen(false);
+                        }}
+                      >
+                        <div className="flex items-center justify-between gap-4">
+                          <span className={cn(
+                            "text-[13px] truncate",
+                            selectedCampaign.id === campaign.id ? "font-bold text-[#5340FF]" : "font-medium text-[#334155]"
+                          )}>
+                            {campaign.title}
+                          </span>
+                          {selectedCampaign.id === campaign.id && (
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#5340FF] shrink-0"></div>
+                          )}
+                        </div>
+                        <span className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{campaign.topic}</span>
                       </div>
-                   )}
+                    ))
+                  ) : (
+                    <div className="p-6 text-center text-xs text-gray-400 font-bold">
+                      Không tìm thấy chủ đề nào.
+                    </div>
+                  )}
                 </div>
               </div>
             )}
@@ -407,8 +407,8 @@ export default function WeNeedYouOverviewReport() {
           {/* Date Filter Section */}
           <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm flex flex-col gap-3 print:hidden">
             <div className="flex items-center gap-2 mb-0">
-               <Filter size={16} className="text-[#5340FF]" />
-               <h3 className="font-bold text-gray-800 text-[15px]">Bộ lọc dữ liệu</h3>
+              <Filter size={16} className="text-[#5340FF]" />
+              <h3 className="font-bold text-gray-800 text-[15px]">Bộ lọc dữ liệu</h3>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -419,11 +419,11 @@ export default function WeNeedYouOverviewReport() {
                   <div className="w-9 h-full flex items-center justify-center text-gray-400 shrink-0">
                     <Calendar size={14} />
                   </div>
-                  <input 
-                    type="date" 
+                  <input
+                    type="date"
                     value={fromDate}
                     onChange={(e) => setFromDate(e.target.value)}
-                    className="flex-1 h-full pr-3 outline-none bg-transparent text-[13px] text-gray-700" 
+                    className="flex-1 h-full pr-3 outline-none bg-transparent text-[13px] text-gray-700"
                   />
                 </div>
               </div>
@@ -435,32 +435,32 @@ export default function WeNeedYouOverviewReport() {
                   <div className="w-9 h-full flex items-center justify-center text-gray-400 shrink-0">
                     <Calendar size={14} />
                   </div>
-                  <input 
-                    type="date" 
+                  <input
+                    type="date"
                     value={toDate}
                     onChange={(e) => setToDate(e.target.value)}
-                    className="flex-1 h-full pr-3 outline-none bg-transparent text-[13px] text-gray-700" 
+                    className="flex-1 h-full pr-3 outline-none bg-transparent text-[13px] text-gray-700"
                   />
                 </div>
               </div>
             </div>
 
             <div className="flex justify-end pt-2 border-t border-gray-100 mt-2 gap-3">
-              <button 
+              <button
                 onClick={handlePrint}
                 className="h-[38px] px-5 rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 shadow-sm flex items-center gap-2 transition-colors font-semibold text-[13px]"
               >
                 <Printer size={15} />
                 In
               </button>
-              <button 
+              <button
                 onClick={handleReload}
                 className="h-[38px] px-5 rounded-lg border border-gray-200 bg-white text-gray-700 hover:bg-gray-50 shadow-sm flex items-center gap-2 transition-colors font-semibold text-[13px]"
               >
                 <Download size={15} />
                 Xuất file
               </button>
-              <button 
+              <button
                 onClick={handleReload}
                 className="h-[38px] px-6 rounded-lg bg-[#5340FF] text-white hover:bg-[#4330EF] shadow-md shadow-[#5340FF]/20 flex items-center gap-2 transition-colors font-bold text-[13px]"
               >
@@ -484,93 +484,93 @@ export default function WeNeedYouOverviewReport() {
 
           {/* Heading for Question Stats */}
           <div className="border-b border-gray-200 pb-2 mt-4">
-             <h2 className="text-[17px] font-bold text-[#14233b] uppercase tracking-tight">Thống kê đáp án từng câu hỏi trong chủ đề</h2>
+            <h2 className="text-[17px] font-bold text-[#14233b] uppercase tracking-tight">Thống kê đáp án từng câu hỏi trong chủ đề</h2>
           </div>
 
           {/* Loop over questions */}
           <div className="flex flex-col gap-6 mb-20">
-             {campaignStats.questions.map((question, index) => {
-                return (
-                   <div 
-                     key={question.id}
-                     className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow group flex flex-col gap-4"
-                   >
-                      {/* Question title and Type Badge */}
-                      <div className="flex items-start justify-between gap-4">
-                         <div className="flex gap-3">
-                            <span className="w-6 h-6 rounded-full bg-[#5340FF]/10 text-[#5340FF] flex items-center justify-center font-bold text-[13px] shrink-0">
-                               {index + 1}
-                            </span>
-                            <h3 className="text-[14.5px] font-bold text-gray-800 leading-snug">{question.text}</h3>
-                         </div>
-                         <span className="px-2.5 py-1 rounded-md bg-[#f0f0ff] text-[#5340FF] text-[10px] font-black uppercase tracking-wider shrink-0">
-                            {question.typeLabel}
-                         </span>
-                      </div>
+            {campaignStats.questions.map((question, index) => {
+              return (
+                <div
+                  key={question.id}
+                  className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-shadow group flex flex-col gap-4"
+                >
+                  {/* Question title and Type Badge */}
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="flex gap-3">
+                      <span className="w-6 h-6 rounded-full bg-[#5340FF]/10 text-[#5340FF] flex items-center justify-center font-bold text-[13px] shrink-0">
+                        {index + 1}
+                      </span>
+                      <h3 className="text-[14.5px] font-bold text-gray-800 leading-snug">{question.text}</h3>
+                    </div>
+                    <span className="px-2.5 py-1 rounded-md bg-[#f0f0ff] text-[#5340FF] text-[10px] font-black uppercase tracking-wider shrink-0">
+                      {question.typeLabel}
+                    </span>
+                  </div>
 
-                      {/* Question Content/Results depending on Type */}
-                      {question.type === "Radio" && question.options && (
-                         <div className="flex flex-col gap-3.5 mt-2 pl-9">
-                            {question.options.map((opt, oIdx) => (
-                               <div key={oIdx} className="flex flex-col gap-1.5">
-                                  <div className="flex justify-between items-center text-xs font-bold">
-                                     <span className="text-gray-700">{opt.label}</span>
-                                     <span className="text-gray-950">{formatNumber(opt.count)} ({opt.percent}%)</span>
-                                  </div>
-                                  <div className="w-full h-2.5 bg-slate-50 border border-slate-100 rounded-full overflow-hidden">
-                                     <div 
-                                       className="h-full bg-blue-500 rounded-full group-hover:shadow-[0_0_8px_rgba(59,130,246,0.3)] transition-all duration-700" 
-                                       style={{ width: `${opt.percent}%` }}
-                                     ></div>
-                                  </div>
-                               </div>
-                            ))}
-                         </div>
-                      )}
+                  {/* Question Content/Results depending on Type */}
+                  {question.type === "Radio" && question.options && (
+                    <div className="flex flex-col gap-3.5 mt-2 pl-9">
+                      {question.options.map((opt, oIdx) => (
+                        <div key={oIdx} className="flex flex-col gap-1.5">
+                          <div className="flex justify-between items-center text-xs font-bold">
+                            <span className="text-gray-700">{opt.label}</span>
+                            <span className="text-gray-950">{formatNumber(opt.count)} ({opt.percent}%)</span>
+                          </div>
+                          <div className="w-full h-2.5 bg-slate-50 border border-slate-100 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-blue-500 rounded-full group-hover:shadow-[0_0_8px_rgba(59,130,246,0.3)] transition-all duration-700"
+                              style={{ width: `${opt.percent}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
-                      {question.type === "Checkbox" && question.options && (
-                         <div className="flex flex-col gap-3.5 mt-2 pl-9">
-                            {question.options.map((opt, oIdx) => (
-                               <div key={oIdx} className="flex flex-col gap-1.5">
-                                  <div className="flex justify-between items-center text-xs font-bold">
-                                     <span className="text-gray-700">{opt.label}</span>
-                                     <span className="text-gray-950">{formatNumber(opt.count)} ({opt.percent}%)</span>
-                                  </div>
-                                  <div className="w-full h-2.5 bg-slate-50 border border-slate-100 rounded-full overflow-hidden">
-                                     <div 
-                                       className="h-full bg-teal-500 rounded-full group-hover:shadow-[0_0_8px_rgba(20,184,166,0.3)] transition-all duration-700" 
-                                       style={{ width: `${opt.percent}%` }}
-                                     ></div>
-                                  </div>
-                               </div>
-                            ))}
-                         </div>
-                      )}
+                  {question.type === "Checkbox" && question.options && (
+                    <div className="flex flex-col gap-3.5 mt-2 pl-9">
+                      {question.options.map((opt, oIdx) => (
+                        <div key={oIdx} className="flex flex-col gap-1.5">
+                          <div className="flex justify-between items-center text-xs font-bold">
+                            <span className="text-gray-700">{opt.label}</span>
+                            <span className="text-gray-950">{formatNumber(opt.count)} ({opt.percent}%)</span>
+                          </div>
+                          <div className="w-full h-2.5 bg-slate-50 border border-slate-100 rounded-full overflow-hidden">
+                            <div
+                              className="h-full bg-teal-500 rounded-full group-hover:shadow-[0_0_8px_rgba(20,184,166,0.3)] transition-all duration-700"
+                              style={{ width: `${opt.percent}%` }}
+                            ></div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
-                      {question.type === "Open" && question.responses && (
-                         <div className="mt-2 pl-9 flex flex-col gap-3">
-                            <div className="border border-gray-100 rounded-xl overflow-hidden shadow-sm">
-                               <div className="bg-slate-50/75 p-2.5 border-b border-gray-100 flex items-center gap-2">
-                                  <MessageSquare size={14} className="text-gray-400" />
-                                  <span className="text-xs font-bold text-gray-500 uppercase tracking-wide">Danh sách ý kiến đóng góp mới nhất</span>
-                               </div>
-                               <div className="flex flex-col divide-y divide-gray-100 bg-white">
-                                  {question.responses.map((resp, rIdx) => (
-                                     <div key={rIdx} className="p-3 hover:bg-slate-50/50 transition-colors flex flex-col gap-1">
-                                        <div className="flex items-center justify-between">
-                                           <span className="text-xs font-bold text-[#14233b]">{resp.name}</span>
-                                           <span className="text-[10px] font-medium text-gray-400">{resp.time}</span>
-                                        </div>
-                                        <p className="text-xs font-medium text-gray-600 leading-relaxed italic">"{resp.content}"</p>
-                                     </div>
-                                  ))}
-                               </div>
+                  {question.type === "Open" && question.responses && (
+                    <div className="mt-2 pl-9 flex flex-col gap-3">
+                      <div className="border border-gray-100 rounded-xl overflow-hidden shadow-sm">
+                        <div className="bg-slate-50/75 p-2.5 border-b border-gray-100 flex items-center gap-2">
+                          <MessageSquare size={14} className="text-gray-400" />
+                          <span className="text-xs font-bold text-gray-500 uppercase tracking-wide">Danh sách ý kiến đóng góp mới nhất</span>
+                        </div>
+                        <div className="flex flex-col divide-y divide-gray-100 bg-white">
+                          {question.responses.map((resp, rIdx) => (
+                            <div key={rIdx} className="p-3 hover:bg-slate-50/50 transition-colors flex flex-col gap-1">
+                              <div className="flex items-center justify-between">
+                                <span className="text-xs font-bold text-[#14233b]">{resp.name}</span>
+                                <span className="text-[10px] font-medium text-gray-400">{resp.time}</span>
+                              </div>
+                              <p className="text-xs font-medium text-gray-600 leading-relaxed italic">"{resp.content}"</p>
                             </div>
-                         </div>
-                      )}
-                   </div>
-                );
-             })}
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
 
         </div>
