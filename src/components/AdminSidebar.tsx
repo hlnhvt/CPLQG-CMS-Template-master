@@ -9,7 +9,7 @@ import {
   Layers, Lock, Sliders, Bookmark, Globe, Sparkles, ShoppingBag,
   Puzzle, AlertCircle, MessageSquare, LayoutTemplate, FileText, Hash, Megaphone,
   Radio, BarChart, Database, ListFilter, ClipboardList, PieChart, Clock, MapPin,
-  BarChart2, LineChart, UserX, Timer, Hourglass, Smartphone, Activity, Lightbulb
+  BarChart2, LineChart, UserX, Timer, Hourglass, Smartphone, Activity, Lightbulb, Star, Briefcase
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MENU_GROUPS } from "@/lib/menu-data";
@@ -27,7 +27,7 @@ export default function AdminSidebar() {
   const isReports = pathname.includes('/reports');
   const isContent = !isSettings && !isReports && (pathname.includes('/content') || pathname.includes('/collections') || pathname === '/' || pathname === '/(admin)');
 
-  const [openGroups, setOpenGroups] = useState<string[]>(["Content_Management", "Survey_Management", "Suggestion_Management"]);
+  const [openGroups, setOpenGroups] = useState<string[]>(["Content_Management", "Survey_Management", "Suggestion_Management", "Legal_Advice"]);
 
   const toggleGroup = (id: string) => {
     setOpenGroups(prev => prev.includes(id) ? prev.filter(g => g !== id) : [...prev, id]);
@@ -119,6 +119,14 @@ export default function AdminSidebar() {
               <SidebarGroup icon={Lightbulb} label="Thống kê Hiến kế" expanded={openGroups.includes('Suggestion_Management')} onClick={() => toggleGroup('Suggestion_Management')}>
                 <SidebarItem icon={PieChart} label="Thống kê theo lĩnh vực" href="/reports/suggestion/overview" active={pathname === '/reports/suggestion/overview'} indent />
                 <SidebarItem icon={HelpCircle} label="Thống kê Chúng tôi cần bạn" href="/reports/we-need-you/overview" active={pathname === '/reports/we-need-you/overview'} indent />
+              </SidebarGroup>
+
+              <div className="my-2 border-t border-gray-200"></div>
+
+              <SidebarGroup icon={MessageSquare} label="Tư vấn & Hỏi đáp" expanded={openGroups.includes('Legal_Advice')} onClick={() => toggleGroup('Legal_Advice')}>
+                <SidebarItem icon={Users} label="Tương tác người dùng" href="/reports/user-interaction" active={pathname === '/reports/user-interaction'} indent />
+                <SidebarItem icon={Star} label="Phản hồi của chuyên gia" href="/reports/expert-feedback" active={pathname === '/reports/expert-feedback'} indent />
+                <SidebarItem icon={Briefcase} label="Lĩnh vực hỏi nhiều nhất" href="/reports/top-fields" active={pathname === '/reports/top-fields'} indent />
               </SidebarGroup>
             </>
           )}
