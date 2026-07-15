@@ -183,7 +183,7 @@ export default function UserInteractionReport() {
                     <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] border-r border-gray-100 w-[15%] text-left uppercase">Email</th>
                     <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] text-left border-r border-gray-100 w-[12%] uppercase">Câu hỏi đã gửi</th>
                     <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] text-left border-r border-gray-100 w-[12%] uppercase">Yêu cầu tư vấn</th>
-                    <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] text-left border-r border-gray-100 w-[12%] uppercase">Đăng ký đào tạo</th>
+                    <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] text-left border-r border-gray-100 w-[12%] uppercase">Đề xuất đào tạo</th>
                     <th className="py-2.5 px-4 font-bold text-gray-800 text-[12px] text-left w-[12%] uppercase">Tổng tương tác</th>
                   </tr>
                 </thead>
